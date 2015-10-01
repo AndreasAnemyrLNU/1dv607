@@ -12,7 +12,7 @@ namespace MemberRegisterWS2
         static void Main(string[] args)
         {
             Controller.Root rootController = new Controller.Root(new View.Menu());
-            rootController.doApplication();
+            rootController.DoApplication();
         }
     }
 }

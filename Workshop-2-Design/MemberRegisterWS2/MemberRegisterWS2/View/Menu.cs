@@ -11,13 +11,15 @@ namespace MemberRegisterWS2.View
 
         public void Welcome()
         {
-            Console.WriteLine("Välkommen till Medlemsregistret!");
+            Console.WriteLine("================================");
+            Console.WriteLine("           Båtklubben           ");
             Console.WriteLine("                                ");
             Console.WriteLine("================================");
             Console.WriteLine("                                ");
-            Console.WriteLine("Medlemmar                       ");
+            Console.WriteLine("Medelemmar                      ");
             Console.WriteLine("                                ");
-            Console.WriteLine("Välj med siffra vad du vill göra");
+            Console.WriteLine("Välj (siffra)                   ");
+            Console.WriteLine("                                ");
             Console.WriteLine("1 - Registrera medlem           ");
             Console.WriteLine("2 - Visa medlemmar              ");
             Console.WriteLine("3 - Radera medlem               ");
@@ -31,10 +33,25 @@ namespace MemberRegisterWS2.View
             Console.WriteLine("8 - Redigera info för båt       ");
             Console.WriteLine("                                ");
             Console.WriteLine("================================");
-            Console.WriteLine("                                ");
+            Console.WriteLine("================================");
         }
 
-        public enum MenuSelection 
+        public void RenderMemberMenu() 
+        {
+            Console.Clear();
+            Console.WriteLine("================================");
+            Console.WriteLine("Välj (siffra)...................");
+            Console.WriteLine("================================");
+            Console.WriteLine("                                ");
+            Console.WriteLine("1 - Lista Kompakt  (Medlemmar)  ");
+            Console.WriteLine("2 - Lista Utförlig (Medlemmar)  ");
+            Console.WriteLine("                                ");
+            Console.WriteLine("================================");
+            Console.WriteLine("================================");
+
+        }
+
+        public enum MenuMain 
         {
             Quit            = 0,            
             //Member Region Menu
@@ -49,13 +66,29 @@ namespace MemberRegisterWS2.View
             BoatDelete      = 7
         }
 
-        public MenuSelection clientDidChoose() 
+        public enum MenuMember 
         {
-            
-            
-            int selected = int.Parse(Console.ReadLine());
+            Quit                    = 0,
+            MemberReadAllCompact    = 1,
+            MemberReadAllVerbos     = 2
+        }
 
-            return (MenuSelection)selected;
+        public enum MenuType
+        {
+            Main,
+            Member
+        }
+
+        public MenuMain ClientsMenuMainSelection() 
+        {
+            int selected = int.Parse(Console.ReadLine());
+            return (MenuMain)selected;
+        }
+
+        public MenuMember ClientsMenuMemberSelection()
+        {
+            int selected = int.Parse(Console.ReadLine());
+            return (MenuMember)selected;
         }
 
     }

@@ -9,19 +9,19 @@ namespace MemberRegisterWS2.View
     class MemberCreate : common
     {
 
-        public string askClientAboutFirstName()
+        public string AskClientAboutFirstName()
         {
-            return base.askForInput("Please: Input First Name Of Member");
+            return base.AskForInput("Please: Input Member's first name: ");
         }
 
-        public string askClientAboutLastName()
+        public string AskClientAboutLastName()
         {
-            throw new NotImplementedException();
+            return base.AskForInput("Please: Input Member's last name: ");
         }
 
-        public string askClientAboutPersonalNumber()
+        public string AskClientAboutPersonalNumber()
         {
-            throw new NotImplementedException();
+            return base.AskForInput("Please: Input Member's personal number: ");
         }
     }
 }

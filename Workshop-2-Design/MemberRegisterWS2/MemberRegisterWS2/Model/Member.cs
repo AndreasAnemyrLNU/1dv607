@@ -8,24 +8,43 @@ namespace MemberRegisterWS2.Model
 {
     class Member
     {
-        private string name;
+        private string firstName;
        
-        public string Name
+        public string FirstName
         {
             get
             {
-                return name;
+                return firstName;
             }
             set 
             {
-                if (value != "asdf") 
+                if (false) 
                 {
-                    throw new Exception("asdf");
+                    throw new Exception("Du måste skriva Andréas");
                 }                
-                name = value;
+                firstName = value;
             }
         }
-   
+
+
+        private string lastName;
+
+        public string LastName
+        {
+            get
+            {
+                return lastName;
+            }
+            set
+            {
+                if (false)
+                {
+                    throw new Exception("Du måste skriva Anemyr");
+                }
+                lastName = value;
+            }
+        }
+
 
         public string PersNr { get; set; }
 
@@ -34,9 +53,10 @@ namespace MemberRegisterWS2.Model
             //Empty
         }
 
-        public Member(string name, string persNr)
+        public Member(string name, string lastName, string persNr = "000000-0000")
         {
-            Name = name;
+            FirstName = name;
+            LastName = lastName;
             PersNr = persNr;
         }
     }

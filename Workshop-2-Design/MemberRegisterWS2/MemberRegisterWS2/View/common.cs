@@ -8,7 +8,7 @@ namespace MemberRegisterWS2.View
 {
     class common
     {
-        public string askForInput(string messageToClient)
+        public string AskForInput(string messageToClient)
         {
             //Exec Question to Client for data
             Console.WriteLine(messageToClient);
