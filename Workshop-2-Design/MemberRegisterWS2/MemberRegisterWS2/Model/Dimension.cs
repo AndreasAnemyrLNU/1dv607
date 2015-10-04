@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MemberRegisterWS2.Model
+namespace MemberRegisterWS2.M
 {
 
     public enum UnitOfMeasure { cm }
@@ -13,11 +13,11 @@ namespace MemberRegisterWS2.Model
     {
         int Length { get; set; }
 
-        UnitOfMeasure unitOfMeasure { get; set; }
+        UnitOfMeasure UnitOfMeasure { get; set; }
 
-        Dimension(int length, UnitOfMeasure UnitOfMeasure = UnitOfMeasure.cm)
+        public Dimension(int length, M.UnitOfMeasure unitsOfMeasure)
         {
-            UnitOfMeasure = UnitOfMeasure;
+            UnitOfMeasure = unitsOfMeasure;
             Length = length;
         }
     }

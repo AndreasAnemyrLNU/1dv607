@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MemberRegisterWS2.View
+namespace MemberRegisterWS2.V
 {
-    class MemberCreate : common
+    class MemberCreate : baseMember
     {
 
         public string AskClientAboutFirstName()

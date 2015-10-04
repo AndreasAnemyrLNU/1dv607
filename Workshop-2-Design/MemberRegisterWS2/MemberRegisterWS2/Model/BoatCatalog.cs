@@ -7,33 +7,33 @@ using System.Threading.Tasks;
 
 namespace MemberRegisterWS2.M
 {
-    class MemberCatalog : IEnumerator, IEnumerable
-    { 
-        private List<Member> members;
+    class BoatCatalog : IEnumerator, IEnumerable
+    {
+        private List<Boat> boats;
 
         //Needed for IEnumerator, IEnumerable
         public int position = -1;
 
-        public MemberCatalog()
+        public BoatCatalog()
         {
-            members = new List<Member>();
+            boats = new List<Boat>();
         }
 
 
-        public M.Member addMember(Member member)
+        public M.Boat addBoat(Boat boat)
         {
-            members.Add(member);
-            return member;
+            boats.Add(boat);
+            return boat;
         }
 
-        public M.Member deleteMemberInMemberCatalog(M.Member memberToBeDeleted) 
+        public M.Boat deleteBoatInBoatCatalog(M.Boat boatToBeDeleted) 
         {
-            foreach(M.Member member in members)
+            foreach(M.Boat boat in boats)
             {
-                if (member.Equals(memberToBeDeleted))
+                if (boat.Equals(boatToBeDeleted))
                 {
-                    members.Remove(member);
-                    return memberToBeDeleted;
+                    boats.Remove(boat);
+                    return boatToBeDeleted;
                 }
             }
             return null;
@@ -42,14 +42,14 @@ namespace MemberRegisterWS2.M
         //Needed for IEnumerator, IEnumerable
         public object Current
         {
-            get { return members[position]; }
+            get { return boats[position]; }
         }
 
         //Needed for IEnumerator, IEnumerable
         public bool MoveNext()
         {
             position++;
-            return (position < members.Count);
+            return (position < boats.Count);
         }
         
         //Needed for IEnumerator, IEnumerable
@@ -64,13 +64,13 @@ namespace MemberRegisterWS2.M
             return (IEnumerator)this;
         }
 
-        public M.Member getReferenceOfMemberInMemberCatalog(string persNr)
+        public M.Boat getReferenceOfBoatInBoatCatalog(string unique)
         {
-            foreach (M.Member member in members) 
+            foreach (M.Boat boat in boats) 
             {
-                if (member.PersNr == persNr) 
+                if (boat.Unique == unique) 
                 {
-                    return member;
+                    return boat;
                 }
             }
             return null;

@@ -4,21 +4,50 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MemberRegisterWS2.Controller
+namespace MemberRegisterWS2.C
 {
-    class baseController
+    class BaseController
     {
-        protected baseController ControllerFactory(string controllerToBeCreated)
+
+        // ControllerType is CType
+        public enum CType 
         {
-            switch (controllerToBeCreated)
+            MemberCreate,
+            MemberRead,
+            MemberReadAll,
+            MemberUpdate,
+            MemberDelete,
+            BoatCreate,
+            BoatRead,
+            BoatReadAll,
+            BoatUpdate,
+            BoatDelete
+        }
+                
+        protected BaseController CFactory(CType cType, V.Menu menu = null, M.MemberCatalog memberCatalog = null, M.Member member = null)
+        {
+            switch (cType)
             {
                 
-                case "MemberCreate":
-                    return new Controller.MemberCreate();
+                case CType.MemberCreate :
+                    return new C.MemberCreate();
 
-                case "MemberReadAll":
-                    return new Controller.MemberReadAll();
-                
+                case CType.MemberRead:
+                    return new C.MemberRead(memberCatalog, menu);
+
+                case CType.MemberReadAll :
+                    return new C.MemberReadAll(menu);
+
+                case CType.MemberUpdate :
+                    return new C.MemberUpdate(memberCatalog, member, menu);
+
+                case  CType.MemberDelete :
+                    return new C.MemberDelete(memberCatalog, menu);
+
+                case CType.BoatCreate:
+                    return new C.BoatCreate();
+
+
                 default:
                     //controllerToBeCrated fails matching!
                     return null;

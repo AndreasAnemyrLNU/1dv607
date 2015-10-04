@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MemberRegisterWS2.Model
+namespace MemberRegisterWS2.M
 {
     class Member
     {
@@ -45,19 +45,40 @@ namespace MemberRegisterWS2.Model
             }
         }
 
+        private string persNr;
 
-        public string PersNr { get; set; }
+        public string PersNr 
+        {
+            get 
+            {
+                return persNr;
+            } 
+            set
+            {
+                if (value.Count() != 11) 
+                {
+                    throw new Exception("Input format should be xxxxxx-xxxx");
+                }
+
+                persNr = value;
+            } 
+        }
 
         public Member() 
         {
             //Empty
         }
 
-        public Member(string name, string lastName, string persNr = "000000-0000")
+        public Member(string name, string lastName, string persNr = "xxxxxx-xxxx")
         {
             FirstName = name;
             LastName = lastName;
             PersNr = persNr;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("> Personal Number: {0}\n> Firstname:       {1}\n> Lastname:        {2}",PersNr, FirstName, LastName);
         }
     }
 }

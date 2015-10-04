@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MemberRegisterWS2.Model
+namespace MemberRegisterWS2.M
 {
     public enum BoatType
     {
@@ -16,16 +16,18 @@ namespace MemberRegisterWS2.Model
 
     class Boat
     {
-        private BoatType Type { get; set; }
+        public BoatType Type { get; set; }
 
-        private Dimension Dim { get; set; }
+        public Dimension Dim { get; set; }
 
-        private int Unique { get; set; }
+        public string Unique { get; set; }
 
-        public Boat(Dimension dim, BoatType type = BoatType.Other)
+        public Boat(Dimension dim, BoatType type, string unique)
         {
-            Type = type;
             Dim = dim;
+            Type = type;
+            Unique = unique;
+            
         }        
     }
 }
