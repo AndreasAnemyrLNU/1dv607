@@ -9,136 +9,149 @@
   <Comment CommentText="Model&#xD;&#xA;&#xD;&#xA;">
     <Position X="19.456" Y="0.5" Height="0.291" Width="3.505" />
   </Comment>
-  <Class Name="WS2_NEW.Model.Boat.Boat" Collapsed="true">
-    <Position X="21.5" Y="8.25" Width="1.5" />
+  <Class Name="WS2_NEW.Model.Boat">
+    <Position X="21.75" Y="9.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\Boat\Boat.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="WS2_NEW.Model.BoatCatalog.BoatCatalog">
-    <Position X="21.5" Y="1.5" Width="1.5" />
+  <Class Name="WS2_NEW.Model.BoatCatalog">
+    <Position X="21.75" Y="1.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAAAAAAgAAEAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\Catalog\BoatCatalog\BoatCatalog.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="WS2_NEW.Model.Catalog.MemberCatalog.MemberCatalog">
-    <Position X="19.5" Y="1.5" Width="1.5" />
+  <Class Name="WS2_NEW.Model.MemberCatalog">
+    <Position X="19.5" Y="1.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAgAAEAAEAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAgAQEAAEQAAAAAAAAAAAA=</HashCode>
       <FileName>Model\Catalog\MemberCatalog\MemberCatalog.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="WS2_NEW.Model.Member.Member" Collapsed="true">
-    <Position X="19.75" Y="8.25" Width="1.5" />
+  <Class Name="WS2_NEW.Model.Member">
+    <Position X="19.75" Y="9.75" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAIEAAAABAAAAEgAAAAAAAAAAAAAAQAAAACAAAACg=</HashCode>
       <FileName>Model\Member\Member.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WS2_NEW.Model.Model" Collapsed="true">
-    <Position X="19.75" Y="5.5" Width="3" />
+    <Position X="20" Y="8.25" Width="3" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\Model.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WS2_NEW.Program">
-    <Position X="17.5" Y="13" Width="1.5" />
+    <Position X="23.5" Y="13.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="WS2_NEW.Model.Catalog.Catalog" Collapsed="true">
-    <Position X="20.5" Y="4.25" Width="1.5" />
+  <Class Name="WS2_NEW.Model.Catalog.Catalog">
+    <Position X="20.75" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAgAAEAAEAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAAAgAAAAAAAAAgAQEAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\Catalog\Catalog.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="WS2_NEW.View.View">
-    <Position X="6.25" Y="4" Width="2" />
+    <Position X="6.25" Y="3.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAgAAAAAAAAAAgAAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAABAAAgAIAAAAAAAAgQgAQEAAEAABAAAAAAAAAg=</HashCode>
       <FileName>View\View.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="WS2_NEW.Controller.Controller">
     <Position X="12.75" Y="1.5" Width="3.5" />
+    <Members>
+      <Property Name="Cache" Hidden="true" />
+      <Property Name="CurrentController" Hidden="true" />
+    </Members>
     <TypeIdentifier>
       <HashCode>AAAAAAAyCAAAAAAAAAAAAAAAAQAAAAAACEAAAAAAAAA=</HashCode>
       <FileName>Controller\Controller.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CurrentController" />
+      <Property Name="Cache" />
+    </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="WS2_NEW.View.Index">
-    <Position X="6.25" Y="1.5" Width="2" />
+    <Position X="9" Y="3.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAgAAEAAAAAAAAAAAAAAAAAABAAAAAAAAAA=</HashCode>
       <FileName>View\Index\Index.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WS2_NEW.View.Crud">
-    <Position X="6.25" Y="6.75" Width="2" />
+    <Position X="6.25" Y="8" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAgAAAAAAAAAAAAgAAEAAEAABAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAgAAAAAAAAAAAAgAQEAAEAABAAAAAAAAAA=</HashCode>
       <FileName>View\Crud\Crud.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="WS2_NEW.View.Member">
-    <Position X="5" Y="10" Width="2" />
+    <Position X="5" Y="11.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAgAAEAAAAAAAAAgAAEAAEAABAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAgAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>View\Member\Member.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WS2_NEW.View.Boat">
-    <Position X="7.5" Y="10" Width="2" />
+    <Position X="7.5" Y="11.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAgAAEAAAAAAAAAgAAEAAEAABAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAgAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>View\Boat\Boat.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WS2_NEW.Controller.Index">
-    <Position X="13.5" Y="7.5" Width="2" />
+    <Position X="13.5" Y="9.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <HashCode>AAAAAAAACAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controller\Index\Index.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="WS2_NEW.Controller.Menu" Collapsed="true">
-    <Position X="12.75" Y="5.5" Width="3.5" />
+  <Class Name="WS2_NEW.Controller.Menu">
+    <Position X="12.75" Y="5" Width="3.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAACABAAAAAAAAAAACAAAAAAAACAAAAAAAAIAA=</HashCode>
-      <FileName>Controller\Menu.cs</FileName>
+      <HashCode>AAAAAAAASABQAAAGAIAAAAABQAAAgAACAAAAAAAAAAA=</HashCode>
+      <FileName>Controller\Menu\Menu.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="WS2_NEW.Controller.Boat">
-    <Position X="15.75" Y="7.5" Width="2" />
+    <Position X="15.75" Y="9.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controller\Boat\Boat.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WS2_NEW.Controller.Member">
-    <Position X="11.25" Y="7.5" Width="2" />
+    <Position X="11.25" Y="9.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controller\Member\Member.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WS2_NEW.Model.Cache">
-    <Position X="0.75" Y="0.5" Width="2.5" />
+    <Position X="0.5" Y="0.5" Width="2.5" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
     <NestedTypes>
+      <Enum Name="WS2_NEW.Model.Cache.crudMode">
+        <TypeIdentifier>
+          <NewMemberFileName>Model\Cache\Cache.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
       <Enum Name="WS2_NEW.Model.Cache.controller">
         <TypeIdentifier>
           <NewMemberFileName>Model\Cache\Cache.cs</NewMemberFileName>
@@ -149,54 +162,59 @@
           <NewMemberFileName>Model\Cache\Cache.cs</NewMemberFileName>
         </TypeIdentifier>
       </Enum>
-      <Enum Name="WS2_NEW.Model.Cache.menuIndex" Collapsed="true">
+      <Enum Name="WS2_NEW.Model.Cache.menuIndex">
         <TypeIdentifier>
           <NewMemberFileName>Model\Cache\Cache.cs</NewMemberFileName>
         </TypeIdentifier>
       </Enum>
-      <Enum Name="WS2_NEW.Model.Cache.menuBoat" Collapsed="true">
+      <Enum Name="WS2_NEW.Model.Cache.menuBoat">
+        <TypeIdentifier>
+          <NewMemberFileName>Model\Cache\Cache.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="WS2_NEW.Model.Cache.menuMember">
         <TypeIdentifier>
           <NewMemberFileName>Model\Cache\Cache.cs</NewMemberFileName>
         </TypeIdentifier>
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAgEAEACAAAEAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAEAAABAAgkAEACAAAEAEAAAEAAAAAAAgAAAAAA=</HashCode>
       <FileName>Model\Cache\Cache.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="WS2_NEW.Interface.ICRUD">
-    <Position X="12.25" Y="11.75" Width="1.5" />
+    <Position X="13.5" Y="11.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAgAAEAAEAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAgAQEAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Interface\ICRUD.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="WS2_NEW.Interface.IClientCommunicate">
-    <Position X="10.5" Y="11.75" Width="1.5" />
+    <Position X="17.75" Y="13.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAA=</HashCode>
       <FileName>Interface\IClientCommunicate.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="WS2_NEW.Interface.IController">
-    <Position X="14" Y="11.75" Width="1.5" />
+    <Position X="15.75" Y="11.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAwCAAAAAAAAAAAAAAAAAAAAAAACEAAAAAAAAA=</HashCode>
       <FileName>Interface\IController.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="WS2_NEW.Interface.IMenu">
-    <Position X="15.75" Y="11.75" Width="1.5" />
+    <Position X="17.75" Y="11.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interface\IMenu.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="WS2_NEW.Interface.IView" Collapsed="true">
-    <Position X="17.5" Y="11.75" Width="1.5" />
+  <Interface Name="WS2_NEW.Interface.IView">
+    <Position X="11.5" Y="11.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAABAAAgAIAAAAAAAAAQAAAAAAAAABAAAAAAAAAA=</HashCode>
       <FileName>Interface\IView.cs</FileName>
     </TypeIdentifier>
   </Interface>
