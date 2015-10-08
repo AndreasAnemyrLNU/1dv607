@@ -10,14 +10,72 @@ namespace WS2_NEW.View
     {
         override public abstract void setRequest();
 
-        override public abstract string getResponse();
+        public override string getResponse(string question = null, bool completelylOwnFormattedQuestion = false)
+        {
+            if (!completelylOwnFormattedQuestion)
+            {
+                Console.WriteLine("Plz - enter {0} and press enter...", question);
+            }
+            else 
+            {
+                Console.WriteLine("{0}", question);
+            }
 
-        public abstract void Create();
+            while (true)
+            {
+                try
+                {
+                    return Console.ReadLine();
+                }           
+                catch (Exception e)
+                {
+                    errorCrud(e.Message);
+                }
+            }  
+        }
+        public void Create()
+        {
+            Console.Clear();
+            Console.WriteLine("Ok - You want to create a {0}?\n", this.GetType().Name);
+        }
 
-        public abstract void Read();
+        public void Read()
+        {
+            Console.Clear();
+            Console.WriteLine("Ok - You want to view a {0}?\n", this.GetType().Name);
+        }
 
-        public abstract void Update();
+        public void Update()
+        {
+            Console.Clear();
+            Console.WriteLine("Ok - You want to edit a {0}?\n", this.GetType().Name);
+        }
 
-        public abstract void Delete();
+        public void Delete()
+        {
+            Console.Clear();
+            Console.WriteLine("Ok - You want to erase a {0}?\n", this.GetType().Name);
+        }
+
+
+        public Model.Member Read(Model.Member toBeRead)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Model.Member Update(Model.Member toBeUpdated)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Model.Member Delete(Model.Member toBeDeleted)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Model.Member AddMember(Model.Member member)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -8,6 +8,6 @@ namespace WS2_NEW.Interface
 {
     interface IMenu
     {
-        void RenderMenu(Interface.IView view, Interface.IController controller);
+        void menuSwitcher(Interface.IView view, Interface.IController controller);
     }
 }

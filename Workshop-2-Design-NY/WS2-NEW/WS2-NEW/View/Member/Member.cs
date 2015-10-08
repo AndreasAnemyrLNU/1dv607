@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace WS2_NEW.View
 {
-    class Member : WS2_NEW.View.Crud
+    class Member : Crud
     {
         private const string Title = ":::   Members!";
 
         public override void setRequest()
         {
+            Console.Clear();
             Console.WindowHeight = 25;
             Console.WindowWidth = 40;
             TitleOut(Title);
@@ -30,29 +31,6 @@ namespace WS2_NEW.View
             // Region End :::: Menu Selections
         }
 
-        public override string getResponse()
-        {
-            return Console.ReadLine();
-        }
 
-        public override void Create()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Read()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Update()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Delete()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -28,7 +28,7 @@ namespace WS2_NEW.View
             // Region End :::: Menu Selections
         }
 
-        public override string getResponse()
+        public override string getResponse(string question = null, bool completelylOwnFormattedQuestion = false)
         {
             return Console.ReadLine();
         }

@@ -8,15 +8,32 @@ namespace WS2_NEW.Model
 {
     class Cache
     {
-        public Cache(controller controller, view view) 
+        public Cache(controller controller, view view, crudMode crudMode = crudMode.Stateless, BoatCatalog boatCatalog = null, MemberCatalog memberCatalog = null) 
         {
             CachedController = controller;
             CachedView = view;
+            CachedCrudMode = crudMode;
+            CachedBoatCatalog = boatCatalog;
+            CachedMemberCatalog = memberCatalog;
+
+            if (boatCatalog == null) 
+            {
+                throw new ApplicationException("Where´s boatcatalog? Nothing to use in the Constructor...");
+            }
+            if (memberCatalog == null)
+            {
+                throw new ApplicationException("Where´s boatcatalog? Nothing to use in the Constructor...");
+            }
+
         }
 
         private controller CachedController { get; set; }
 
         private view CachedView { get; set; }
+
+        private crudMode CachedCrudMode { get; set; }
+
+        public enum crudMode { Stateless, Create, Read, Update, Delete}
 
         public enum controller { Stateless, Index, Member, Boat }
 
@@ -37,7 +54,22 @@ namespace WS2_NEW.Model
             Update = 3,
             Delete = 4,
             GoToMenuBoatCatalog = 5,
-            GoTMenuIndex = 6
+            GoToMenuIndex = 6
+        }
+
+        public enum menuMember
+        {
+            Create = 1,
+            Read = 2,
+            Update = 3,
+            Delete = 4,
+            GoToMenuBoatCatalog = 5,
+            GoToMenuIndex = 6
+        }
+
+        public crudMode getCrudModeInCache() 
+        {
+            return CachedCrudMode;
         }
 
         public controller getControllerInCache()
@@ -56,11 +88,21 @@ namespace WS2_NEW.Model
             return CachedController;
         }
 
+        public crudMode setCrudModeInCache(crudMode crudModeToBeCached)
+        {
+            CachedCrudMode = crudModeToBeCached;
+            return CachedCrudMode;
+        }
+
         public view setViewInCache(view viewToBeCached)
         {
             CachedView = viewToBeCached;
             return CachedView;
         }
 
+        // Catalogs to be cached...
+        public MemberCatalog CachedMemberCatalog { get; set; }
+
+        public BoatCatalog CachedBoatCatalog { get; set; }
     }
 }

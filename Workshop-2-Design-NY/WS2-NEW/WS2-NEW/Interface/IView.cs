@@ -6,11 +6,16 @@ using System.Threading.Tasks;
 
 namespace WS2_NEW.Interface
 {
-    interface IView
+    interface IView : ICRUD
     {
         void setRequest();
 
-        string getResponse();
+        string getResponse(string question = null, bool completelylOwnFormattedQuestion = false);
 
+        void setCrudMessageToClient(Model.Cache.crudMode crudMode, Interface.IView view);
+
+        void errorCrud(string errormessage);
+
+        bool clientSaidYesBoxAllRight(string cmd);
     }
 }

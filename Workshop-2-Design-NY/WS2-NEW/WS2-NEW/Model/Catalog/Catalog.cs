@@ -15,5 +15,31 @@ namespace WS2_NEW.Model.Catalog
         abstract public void Update();
 
         abstract public void Delete();
+
+        //TODO this is specific to view. Do not use!!!!!!
+        public string AskForParameterToObject(string clientAnswered)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Member AddMember(Member member)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Member Read(Member toBeRead)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Member Update(Member toBeUpdated)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Member Delete(Member toBeDeleted)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

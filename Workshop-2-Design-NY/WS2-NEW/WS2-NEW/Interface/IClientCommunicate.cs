@@ -11,6 +11,6 @@ namespace WS2_NEW.Interface
 
         void setRequest();
 
-        string getResponse();
+        string getResponse(string Question = null, bool completelylOwnFormattedQuestion = false);
     }
 }
