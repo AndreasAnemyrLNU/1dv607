@@ -49,6 +49,7 @@ namespace WS2_NEW.Model
 
         public enum menuBoat
         {
+            Return,
             Create = 1,
             Read = 2,
             Update = 3,
@@ -59,6 +60,7 @@ namespace WS2_NEW.Model
 
         public enum menuMember
         {
+            Quit,
             Create = 1,
             Read = 2,
             Update = 3,

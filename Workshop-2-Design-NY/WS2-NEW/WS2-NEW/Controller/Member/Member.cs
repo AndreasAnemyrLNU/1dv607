@@ -40,20 +40,32 @@ namespace WS2_NEW.Controller
                         Console.WriteLine(member);
                         
                         // Client Answer questions send through method in view....
-                        ClientResponse = view.getResponse("Is this correct? \nPress y or n \nand than press Enter \nYour current created Member \nwill than be cached in the tmp \ncatalog of Members...", true);
+                        ClientResponse = view.getResponse("Is this correct? \n\n Press y or n \n and than press Enter \n Your current created Member \n will than be cached in the tmp \n catalog of Members...\n\n ", true);
 
                         if (view.clientSaidYesBoxAllRight(ClientResponse)) 
                         {
                             Cache.CachedMemberCatalog.Create();
                             Cache.CachedMemberCatalog.AddMember(member);
+                            ClientResponse = view.getResponse("\n Go to catalog of Members \n Press y (yes)?\n Press Return (Go Back)", true);
+                            
+                            if(view.clientSaidYesBoxAllRight(ClientResponse))
+                            {
+                                SelectedInMenuBoat = Model.Cache.menuBoat.GoToMenuBoatCatalog;
+                            }
+                            else if (view.clientSaidReturn(ClientResponse))
+                            {
+                                SelectedInMenuBoat = Model.Cache.menuBoat.Return;
+                            }
+                            else
+                            {
+                                // iF client has ngeative response.
+                                // Return to index
+                                SelectedInMenuBoat = Model.Cache.menuBoat.GoToMenuIndex;
+                            }
+                            return prepareNewCacheFromMenuBoat(); 
                         }
-
-                        Console.Write("och?");
-                        Console.WriteLine(Cache.CachedMemberCatalog.Read(member));
-
-                        Cache.setCrudModeInCache(Model.Cache.crudMode.Stateless);                                    
-                        return Cache;
-                    
+                    throw new ApplicationException("Menu (create member) is malfunctioning...");
+                                       
                 // C R U D : : : : : C R U D : : : : : C R U D : : : : : C R U D : : : : : C R U D : : : : : C R U D : : : 
                                                                                                                            //- - - - - - r e a d
                     case Model.Cache.crudMode.Read:

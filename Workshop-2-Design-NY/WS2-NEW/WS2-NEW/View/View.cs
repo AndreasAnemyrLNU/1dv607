@@ -42,8 +42,11 @@ namespace WS2_NEW.View
         {
             Console.BackgroundColor = ConsoleColor.Red;
             Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write("\n");
             Console.WriteLine(errormessage);
             Console.ResetColor();
+            Console.WriteLine("\n");
+
         }
 
         public void Create()
@@ -74,11 +77,21 @@ namespace WS2_NEW.View
                 case "y" : return true;
                 case "Y" : return true;                
                 default:
-                    throw new NotImplementedException();
+                    return false;
             }
         }
 
-
+        public bool clientSaidReturn(string cmd)
+        {
+            switch(cmd)
+            {
+                case "" : return true;
+                
+                default:
+                    return false;
+            }
+        }
+        
         public bool clientDidConsoleCommand()
         {
             throw new NotImplementedException();

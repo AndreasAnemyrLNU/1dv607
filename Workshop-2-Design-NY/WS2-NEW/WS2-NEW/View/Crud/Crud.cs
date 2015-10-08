@@ -14,10 +14,12 @@ namespace WS2_NEW.View
         {
             if (!completelylOwnFormattedQuestion)
             {
+                Console.Write("\n ");
                 Console.WriteLine("Plz - enter {0} and press enter...", question);
             }
             else 
             {
+                Console.Write("\n ");
                 Console.WriteLine("{0}", question);
             }
 
@@ -25,6 +27,7 @@ namespace WS2_NEW.View
             {
                 try
                 {
+                    Console.Write("\n\n : ");
                     return Console.ReadLine();
                 }           
                 catch (Exception e)

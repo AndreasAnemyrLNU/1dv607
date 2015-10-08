@@ -37,6 +37,9 @@ namespace WS2_NEW.Controller
         {
             switch (SelectedInMenuBoat)
             {
+                case Model.Cache.menuBoat.Return:
+                    return new Model.Cache(Model.Cache.controller.Boat, Model.Cache.view.Boat, Model.Cache.crudMode.Stateless, Cache.CachedBoatCatalog, Cache.CachedMemberCatalog);
+                
                 case Model.Cache.menuBoat.Create:
                     return new Model.Cache(Model.Cache.controller.Boat, Model.Cache.view.Boat, Model.Cache.crudMode.Create, Cache.CachedBoatCatalog, Cache.CachedMemberCatalog);
                 
