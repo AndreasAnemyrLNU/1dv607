@@ -26,8 +26,6 @@ namespace WS_2_NYAST.Model
 
         //public static int storedInput { get; set; }
 
-        public bool IsActive { get; set; }
-
         public bool HasState { get; set; }
     }
 }
