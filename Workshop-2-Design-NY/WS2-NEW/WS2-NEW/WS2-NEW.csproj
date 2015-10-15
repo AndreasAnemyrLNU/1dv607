@@ -64,6 +64,7 @@
     <Compile Include="View\Crud\Crud.cs" />
     <Compile Include="View\Index\Index.cs" />
     <Compile Include="View\Member\Member.cs" />
+    <Compile Include="View\Menu\menu.cs" />
     <Compile Include="View\View.cs" />
   </ItemGroup>
   <ItemGroup>

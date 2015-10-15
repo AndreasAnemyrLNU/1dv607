@@ -8,16 +8,19 @@ namespace MemberRegisterWS2.C
 {
     class MemberRead : BaseController
     {
+        public M.BoatCatalog BoatCatalog { get; set; }
+
         public M.Member Member { get; set; }
 
         public M.MemberCatalog MemberCatalog { get; set; }
 
-        public V.Menu Menu { get; set; }
+        public V.Index Menu { get; set; }
 
         private V.MemberRead VMemberRead { get; set; }
 
-        public MemberRead(M.MemberCatalog memberCatalog, V.Menu menu)
+        public MemberRead(M.MemberCatalog memberCatalog, V.Index menu, M.BoatCatalog boatCatalog)
         {
+            BoatCatalog = boatCatalog;
             MemberCatalog = memberCatalog;
             Menu = menu;
 
@@ -28,14 +31,18 @@ namespace MemberRegisterWS2.C
         public M.Member ReadMemberFromMemberCatalog()
         {
             Member = null;
-            Menu.selectedInMenuMemberRead = MenuMemberRead.StatelessForNow;
+            Menu.selectedInMenuMemberRead = V.MenuMemberRead.StatelessForNow;
 
-            while (Member == null || Menu.selectedInMenuMemberRead == MenuMemberRead.Continue)
+            while (Member == null || Menu.selectedInMenuMemberRead == V.MenuMemberRead.Continue)
             {
                 string persNr = VMemberRead.AskClientAboutPersonalNumber();
                 Member = MemberCatalog.getReferenceOfMemberInMemberCatalog(persNr);
 
-                VMemberRead.ShowMember(Member, "Member's Specific Info\n");
+                // Has Member any boats?
+                List<M.Boat> boats = BoatCatalog.getReferencesOfMemberBoatsInBoatCatalog(Member);
+                int nrOfBoatsOwnedByMember = boats.Count;
+
+                VMemberRead.ShowMember(Member, "Member's Specific Info\n", nrOfBoatsOwnedByMember);
                
                 if (Member == null)
                 {
@@ -44,12 +51,19 @@ namespace MemberRegisterWS2.C
 
                 Menu.RenderingMenuMemberReadQuitOrContinueAndRememberClientsSelection();
 
-                if (Menu.selectedInMenuMemberRead == MenuMemberRead.Quit)
+                if (Menu.selectedInMenuMemberRead == V.MenuMemberRead.AddBoatToMember) 
+                {
+                    Menu.SelectedInMenuMain = V.IndexMenu.BoatCreate;
+                    Menu.quitTestSelectionAlreadySetByAChildController = true;
+                    break;
+                }
+
+                if (Menu.selectedInMenuMemberRead == V.MenuMemberRead.Quit)
                 {
                     break;
                 }
             }
-            return null;
+            return Member;
         }
     }
 }

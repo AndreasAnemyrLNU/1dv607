@@ -6,25 +6,31 @@ using System.Threading.Tasks;
 
 namespace MemberRegisterWS2.C
 {
-    class BaseController
-    {
 
-        // ControllerType is CType
-        public enum CType 
-        {
-            MemberCreate,
-            MemberRead,
-            MemberReadAll,
-            MemberUpdate,
-            MemberDelete,
-            BoatCreate,
-            BoatRead,
-            BoatReadAll,
-            BoatUpdate,
-            BoatDelete
-        }
-                
-        protected BaseController CFactory(CType cType, V.Menu menu = null, M.MemberCatalog memberCatalog = null, M.Member member = null)
+    // ControllerType is CType
+    public enum CType
+    {
+        MemberCreate,
+        MemberRead,
+        MemberReadAll,
+        MemberUpdate,
+        MemberDelete,
+        BoatCreate,
+        BoatRead,
+        BoatReadAll,
+        BoatUpdate,
+        BoatDelete
+    }
+    
+    class BaseController
+    {                
+        protected BaseController CFactory
+                                            (
+                                                CType cType, V.Index menu = null, 
+                                                M.MemberCatalog memberCatalog = null, 
+                                                M.Member member = null, 
+                                                M.BoatCatalog boatCatalog = null
+                                            )
         {
             switch (cType)
             {
@@ -33,7 +39,7 @@ namespace MemberRegisterWS2.C
                     return new C.MemberCreate();
 
                 case CType.MemberRead:
-                    return new C.MemberRead(memberCatalog, menu);
+                    return new C.MemberRead(memberCatalog, menu, boatCatalog);
 
                 case CType.MemberReadAll :
                     return new C.MemberReadAll(menu);
@@ -47,6 +53,8 @@ namespace MemberRegisterWS2.C
                 case CType.BoatCreate:
                     return new C.BoatCreate();
 
+                case CType.BoatDelete:
+                    return new C.BoatDelete(menu, memberCatalog, boatCatalog);
 
                 default:
                     //controllerToBeCrated fails matching!

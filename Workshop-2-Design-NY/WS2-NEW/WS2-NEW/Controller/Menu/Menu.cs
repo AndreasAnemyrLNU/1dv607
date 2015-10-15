@@ -82,6 +82,9 @@ namespace WS2_NEW.Controller
         {
             switch (SelectedInMenuMember)
             {
+                case Model.Cache.menuMember.Return:
+                    return new Model.Cache(Model.Cache.controller.Member, Model.Cache.view.Member, Model.Cache.crudMode.Stateless, Cache.CachedBoatCatalog, Cache.CachedMemberCatalog);
+
                 case Model.Cache.menuMember.Create:
                     return new Model.Cache(Model.Cache.controller.Member, Model.Cache.view.Member, Model.Cache.crudMode.Create, Cache.CachedBoatCatalog, Cache.CachedMemberCatalog);
 
@@ -94,7 +97,7 @@ namespace WS2_NEW.Controller
                 case Model.Cache.menuMember.Delete:
                     return new Model.Cache(Model.Cache.controller.Member, Model.Cache.view.Member, Model.Cache.crudMode.Delete, Cache.CachedBoatCatalog, Cache.CachedMemberCatalog);
 
-                case Model.Cache.menuMember.GoToMenuBoatCatalog:
+                case Model.Cache.menuMember.GoToMenuMemberCatalog:
                     throw new NotImplementedException();
 
                 case Model.Cache.menuMember.GoToMenuIndex:
@@ -133,6 +136,27 @@ namespace WS2_NEW.Controller
                 default :
                     throw new ApplicationException("A non existing CRUD-functionality?");
             }
+        }
+
+        public bool clientAnsweredYes(string cmd)
+        {
+            try
+            {
+                switch (cmd)
+                {
+                    case "y": return true;
+                    case "Y": return true;
+                    case "n": return false;
+                    case "N": return false;
+                    default:
+                        throw new Exception();
+                }
+            }
+            catch (Exception)
+            {
+                Console.WriteLine(View.menu.clientAnsweredYes);
+            }
+            return false;
         }
     }
 }

@@ -16,7 +16,7 @@ namespace WS2_NEW.Interface
 
         void errorCrud(string errormessage);
 
-        bool clientSaidYesBoxAllRight(string cmd);
+        bool clientAnsweredYes(string cmd);
 
         bool clientSaidReturn(string cmd);
     }

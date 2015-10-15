@@ -12,11 +12,11 @@ namespace MemberRegisterWS2.C
 
         M.Member Member { get; set; }
 
-        V.Menu Menu { get; set; }
+        V.Index Menu { get; set; }
 
         V.MemberDelete VMemberDelete { get; set; }
 
-        public MemberDelete(M.MemberCatalog memberCatalog, V.Menu menu)
+        public MemberDelete(M.MemberCatalog memberCatalog, V.Index menu)
         {
             // Model Required
             MemberCatalog = memberCatalog;
@@ -31,7 +31,7 @@ namespace MemberRegisterWS2.C
         public M.Member deleteMemberFromMemberCatalog()
         {
             Member = null;
-            Menu.selectedInMenuDeleteMember = MenuDeleteMember.StatelessForNow;
+            Menu.selectedInMenuDeleteMember = V.MenuMemberDelete.StatelessForNow;
 
             while (Member == null)
             {
@@ -43,7 +43,7 @@ namespace MemberRegisterWS2.C
                     VMemberDelete.NotExistingMember();
                     Menu.RenderingMenuDeleteMemberQuitOrContinueAndRememberClientsSelection();
                 }
-                if (Menu.selectedInMenuDeleteMember == MenuDeleteMember.Quit)
+                if (Menu.selectedInMenuDeleteMember == V.MenuMemberDelete.Quit)
                 {
                     break;
                 }

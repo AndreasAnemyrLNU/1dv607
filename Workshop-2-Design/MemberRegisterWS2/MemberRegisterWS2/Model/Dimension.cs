@@ -20,5 +20,11 @@ namespace MemberRegisterWS2.M
             UnitOfMeasure = unitsOfMeasure;
             Length = length;
         }
+
+        public override string ToString()
+        {
+            return string.Format("This boat's length is {0}{1}",Length, UnitOfMeasure);
+        } 
+
     }
 }

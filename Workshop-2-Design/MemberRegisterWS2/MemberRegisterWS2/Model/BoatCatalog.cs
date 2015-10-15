@@ -64,16 +64,21 @@ namespace MemberRegisterWS2.M
             return (IEnumerator)this;
         }
 
-        public M.Boat getReferenceOfBoatInBoatCatalog(string unique)
+        public List<Boat> getReferencesOfMemberBoatsInBoatCatalog(M.Member member)
         {
+            // Local created BoatCatalog for currnet member       
+            List<Boat> memberboats = new List<Boat>();
+
             foreach (M.Boat boat in boats) 
             {
-                if (boat.Unique == unique) 
+
+                if (member.PersNr == boat.Member.PersNr) 
                 {
-                    return boat;
+                    memberboats.Add(boat);
                 }
             }
-            return null;
+
+            return memberboats;
         }
     }
 }

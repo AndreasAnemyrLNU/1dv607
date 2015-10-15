@@ -70,15 +70,25 @@ namespace WS2_NEW.View
         }
 
 
-        public bool clientSaidYesBoxAllRight(string cmd)
+        public bool clientAnsweredYes(string cmd)
         {
-            switch(cmd)
+            try
             {
-                case "y" : return true;
-                case "Y" : return true;                
-                default:
-                    return false;
+                switch (cmd)
+                {
+                    case "y": return true;
+                    case "Y": return true;
+                    case "n": return false;
+                    case "N": return false;
+                    default:
+                        throw new Exception();
+                }
             }
+            catch (Exception)
+            {
+                Console.WriteLine(menu.clientAnsweredYes);
+            }
+            return false;
         }
 
         public bool clientSaidReturn(string cmd)
@@ -92,12 +102,6 @@ namespace WS2_NEW.View
             }
         }
         
-        public bool clientDidConsoleCommand()
-        {
-            throw new NotImplementedException();
-        }
-
-
         public Model.Member Read(Model.Member toBeRead)
         {
             throw new NotImplementedException();
@@ -116,6 +120,6 @@ namespace WS2_NEW.View
         public Model.Member AddMember(Model.Member member)
         {
             throw new NotImplementedException();
-        }
+        } 
     }
 }

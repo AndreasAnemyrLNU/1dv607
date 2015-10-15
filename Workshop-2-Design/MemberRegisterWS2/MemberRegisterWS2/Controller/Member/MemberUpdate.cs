@@ -12,11 +12,11 @@ namespace MemberRegisterWS2.C
 
         private M.MemberCatalog MemberCatalog { get; set; }
 
-        private V.Menu Menu { get; set; }
+        private V.Index Menu { get; set; }
 
         private V.MemberUpdate VMemberUpdate { get; set; }
 
-        public MemberUpdate(M.MemberCatalog memberCatalog, M.Member member, V.Menu menu) 
+        public MemberUpdate(M.MemberCatalog memberCatalog, M.Member member, V.Index menu) 
         {
             Member = member;
             MemberCatalog = memberCatalog;
@@ -30,7 +30,7 @@ namespace MemberRegisterWS2.C
         public M.Member UpdateMemberFromMemberCatalog()
         {
             Member = null;
-            Menu.selectedInMenuUpdateMember = MenuUpdateMember.StatelessForNow;
+            Menu.selectedInMenuUpdateMember = V.MenuUpdateMember.StatelessForNow;
 
             while (Member == null)
             {
@@ -60,7 +60,7 @@ namespace MemberRegisterWS2.C
                     VMemberUpdate.NotExistingMember();
                     Menu.RenderingMenuUpdateMemberQuitOrContinueAndRememberClientsSelection();
                 }
-                if (Menu.selectedInMenuUpdateMember == MenuUpdateMember.Quit)
+                if (Menu.selectedInMenuUpdateMember == V.MenuUpdateMember.Quit)
                 {
                     break;
                 }

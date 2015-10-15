@@ -60,12 +60,12 @@ namespace WS2_NEW.Model
 
         public enum menuMember
         {
-            Quit,
+            Return,
             Create = 1,
             Read = 2,
             Update = 3,
             Delete = 4,
-            GoToMenuBoatCatalog = 5,
+            GoToMenuMemberCatalog = 5,
             GoToMenuIndex = 6
         }
 

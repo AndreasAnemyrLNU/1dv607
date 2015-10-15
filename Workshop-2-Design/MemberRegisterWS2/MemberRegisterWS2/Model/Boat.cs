@@ -22,12 +22,19 @@ namespace MemberRegisterWS2.M
 
         public string Unique { get; set; }
 
-        public Boat(Dimension dim, BoatType type, string unique)
+        public M.Member Member { get; set; }
+
+        public Boat(Dimension dim, M.Member member, BoatType type)
         {
             Dim = dim;
+            Member = member;
             Type = type;
-            Unique = unique;
-            
-        }        
+            Unique = new DateTime().ToString();
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0} {1}", Type, Dim.ToString());
+        }
     }
 }

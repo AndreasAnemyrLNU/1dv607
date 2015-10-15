@@ -8,9 +8,9 @@ namespace MemberRegisterWS2.C
 {
     class MemberReadAll : BaseController
     {
-        public V.Menu Menu { get; set; }
+        public V.Index Menu { get; set; }
 
-        public MemberReadAll(V.Menu menu) 
+        public MemberReadAll(V.Index menu) 
         {
             Menu = menu;
         }
@@ -20,15 +20,15 @@ namespace MemberRegisterWS2.C
             memberCatalog.Reset();
             view.outputCompactMemberCatalog(memberCatalog);
             Menu.RenderingMenuShowMembersQuitOrContinueAndRememberClientsSelection();
-            if (Menu.SelectedInMenuMember == MenuMemberReadAll.Continue)
+            if (Menu.SelectedInMenuMember == V.MenuMemberReadAll.Continue)
             {
                 Menu.RenderingMenuShowMembersAndRememberClientsSelection();
             }
         }
 
-        public void getVerboseMemberCatalog(M.MemberCatalog memberCatalog, V.MemberCatalog view) 
+        public void getVerboseMemberCatalog(M.MemberCatalog memberCatalog, M.BoatCatalog boatCatalog ,V.MemberCatalog view) 
         {
-            view.outputCompactMemberCatalog(memberCatalog);
+            view.outputVerboseMemberCatalog(memberCatalog, boatCatalog);
         }
     }
 }

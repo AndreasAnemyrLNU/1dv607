@@ -62,7 +62,7 @@
   <Class Name="WS2_NEW.View.View">
     <Position X="6.25" Y="3.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAQAAABAAAgAIAAAAAAAAgQgAQEAAEAABAAAAAAAAAg=</HashCode>
+      <HashCode>AAQAAABACAgAIAAAAAAAAgQgAQEAAEAABAAAAAAAAAg=</HashCode>
       <FileName>View\View.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -91,7 +91,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="WS2_NEW.View.Crud">
-    <Position X="6.25" Y="8" Width="2" />
+    <Position X="6.25" Y="8.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAgAAAAAAAAAAAAgAQEAAEAABAAAAAAAAAA=</HashCode>
       <FileName>View\Crud\Crud.cs</FileName>
@@ -101,7 +101,7 @@
   <Class Name="WS2_NEW.View.Member">
     <Position X="5" Y="11.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAgAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>BAAAAAAAAAgAEEAAAgAAAQAAAAQQAAACAAAgBAAAAAA=</HashCode>
       <FileName>View\Member\Member.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -137,7 +137,7 @@
   <Class Name="WS2_NEW.Controller.Member">
     <Position X="11.25" Y="9.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAiAAAAAEAAAAAAQCAAAAAAAkACQCAAAAAAAA=</HashCode>
       <FileName>Controller\Member\Member.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -184,37 +184,37 @@
     </TypeIdentifier>
   </Class>
   <Interface Name="WS2_NEW.Interface.ICRUD">
-    <Position X="13.5" Y="11.75" Width="1.5" />
+    <Position X="13.5" Y="13.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAAAAAAgAQEAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Interface\ICRUD.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="WS2_NEW.Interface.IClientCommunicate">
-    <Position X="17.75" Y="13.25" Width="1.5" />
+    <Position X="17.75" Y="15.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAA=</HashCode>
       <FileName>Interface\IClientCommunicate.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="WS2_NEW.Interface.IController">
-    <Position X="15.75" Y="11.75" Width="1.5" />
+    <Position X="15.75" Y="13.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAwCAAAAAAAAAAAAAAAAAAAAAAACEAAAAAAAAA=</HashCode>
       <FileName>Interface\IController.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="WS2_NEW.Interface.IMenu">
-    <Position X="17.75" Y="11.75" Width="1.5" />
+    <Position X="17.75" Y="13.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interface\IMenu.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="WS2_NEW.Interface.IView">
-    <Position X="11.5" Y="11.75" Width="1.5" />
+    <Position X="11.5" Y="13.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAABAAAgAIAAAAAAAAAQAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAABACAgAIAAAAAAAAAQAAAAAAAAABAAAAAAAAAA=</HashCode>
       <FileName>Interface\IView.cs</FileName>
     </TypeIdentifier>
   </Interface>

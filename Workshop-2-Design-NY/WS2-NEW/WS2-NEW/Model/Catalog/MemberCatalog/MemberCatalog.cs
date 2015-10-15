@@ -10,7 +10,7 @@ namespace WS2_NEW.Model
     {
         private List<Member> members;
 
-        public MemberCatalog() 
+        public MemberCatalog()
         {
             // Empty
         }
@@ -19,7 +19,7 @@ namespace WS2_NEW.Model
         {
             members = new List<Member>();
 
-            if (members == null) 
+            if (members == null)
             {
                 throw new Exception("Fail: The Catalog of members could not be created!");
             }
@@ -27,10 +27,22 @@ namespace WS2_NEW.Model
 
         public Member Read(Member toBeRead)
         {
-            foreach(Member member in members)
+            foreach (Member member in members)
             {
                 member.Equals(toBeRead);
                 return member;
+            }
+            return null;
+        }
+
+        public Member Read(string SSN)
+        {
+            foreach (Member member in members)
+            {
+                if (SSN.Equals(member.PersonalNumber))
+                {
+                    return member;
+                }
             }
             return null;
         }
@@ -46,16 +58,18 @@ namespace WS2_NEW.Model
         }
 
         public Member Delete(Member toBeDeleted)
-        {
-            foreach (Member member in members)
-            {
-                member.Equals(toBeDeleted);
-                members.Remove(toBeDeleted);
-            }
-            return toBeDeleted;
+        {                        
+                foreach (Member member in members)
+                {
+                    member.Equals(toBeDeleted);
+                    members.Remove(toBeDeleted);
+                    if(members.Count == 0)
+                        break;
+                }
+            return toBeDeleted;            
         }
 
-        public Member AddMember(Member member) 
+        public Member AddMember(Member member)
         {
             members.Add(member);
             return member;

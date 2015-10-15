@@ -6,11 +6,20 @@ using System.Threading.Tasks;
 
 namespace WS2_NEW.Model
 {
+    // If adding fields in this class these should be added in this enum.
+    // Great if we need to switch for an update etc etc etc
+    public enum FieldInModelMember 
+    {
+        firsName,
+        lastName,
+        SSN
+    }
+
     class Member : WS2_NEW.Model.Model
     {
         private string firstName;
         private string lastName;
-        private string personalNumber;
+        private string SSN;
         public Member() 
         {
             // Empty
@@ -42,11 +51,11 @@ namespace WS2_NEW.Model
         }
         public string PersonalNumber 
         {
-            get { return personalNumber; }
+            get { return SSN; }
             set
             {
                 validateText(value, 11, 11);
-                personalNumber = value;
+                SSN = value;
             }  
         }
         private bool validateText(string value, int minChars, int maxChars)
@@ -67,7 +76,7 @@ namespace WS2_NEW.Model
         }
         public bool Equals(Member member)
         {
-            return this.personalNumber == member.personalNumber;
+            return this.SSN == member.SSN;
         }
     }
 }
