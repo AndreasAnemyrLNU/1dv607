@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace WS_2_NYAST.View
 {
-    class MenuMember : BaseMenu
+    public class MenuMember : BaseMenu
     {
-        new public enum Menu { StateLess, Create, Read, Update, Delete, Save, Quit }
+        new public enum Menu { StateLess, Create, Read, Update, Delete, Compact, Verbose, Save, Quit }
 
         public Menu State { get; set; }
 
@@ -20,7 +20,7 @@ namespace WS_2_NYAST.View
             //Empty
         }
 
-        private const string Title = "Menu->Member!";
+        public const string Title = "Menu->Member!";
 
         public override void ShowIt(View.BaseMenu menu, List<View.IMenu> imenus)
         {

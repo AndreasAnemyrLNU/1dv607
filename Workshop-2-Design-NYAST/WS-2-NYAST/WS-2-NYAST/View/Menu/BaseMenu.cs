@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WS_2_NYAST.View
 {
-    abstract class BaseMenu : View.IMenu
+    public abstract class BaseMenu : View.IMenu
     {
         // Menu status
         public Model.Menu ModelMenu { get; set; }

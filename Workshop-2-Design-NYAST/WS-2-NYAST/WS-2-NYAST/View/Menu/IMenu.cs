@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WS_2_NYAST.View
 {
-    interface IMenu
+    public interface IMenu
     {
         //void ShowIt(View.IMenu imenu, List<View.IMenu> imenus, string title, Array selectables);
 

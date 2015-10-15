@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace WS_2_NYAST.View
 {
-    class MenuBoat : BaseMenu
+    public class MenuBoat : BaseMenu
     {
-        new public enum Menu { StateLess, Quit, Create, Read, Update, Delete, Save}
+        new public enum Menu { StateLess, Create, Read, Update, Delete, Save, Quit}
 
         public Menu State { get; set; }
 

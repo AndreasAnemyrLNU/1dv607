@@ -6,22 +6,25 @@ using System.Threading.Tasks;
 
 namespace WS_2_NYAST.Controller
 {
-    class Boat
+    public class Boat
     {
 
         // Region Start :: Dependenies
-        private View.ConsoleIn cin;
-        private View.ConsoleOut cout;
-        private View.MenuBoat menuBoat;
-        private Model.Boat ModelBoat;
-        private Model.MemberCatalog MemberCatalog   { get; set; }
-        private Model.BoatCatalog BoatCatalog       {get; set;}
+        public View.ConsoleIn cin;
+        public View.ConsoleOut cout;
+        public View.MenuBoat menuBoat;
+        public Model.Boat ModelBoat;
+        public Model.Member ModelMember;
+        public Model.MemberCatalog MemberCatalog   { get; set; }
+        public Model.BoatCatalog BoatCatalog       {get; set;}
         // Regions End  :: Dependencies
 
         /// <summary>
         /// We stop all creating stuff
         /// </summary>
-        private bool runWhile { get; set; }
+        public bool runWhile { get; set; }
+
+        public int Counter { get; set; }
 
         public Boat(View.ConsoleIn cin, View.ConsoleOut cout, View.MenuBoat menuBoat, Model.MemberCatalog memberCatalog, Model.BoatCatalog boatCatalog)
         {
@@ -32,8 +35,10 @@ namespace WS_2_NYAST.Controller
             this.BoatCatalog = boatCatalog;
         }
 
-        public Model.Member Create(Model.BoatCatalog boatCatalog)
+        public Model.Boat Create(Model.BoatCatalog boatCatalog)
         {
+            Preparing();
+
             // Start Region :: Prepare
             ModelBoat = new Model.Boat();
             runWhile = true;
@@ -43,38 +48,78 @@ namespace WS_2_NYAST.Controller
             {
                 try
                 {
-                    // Printa list på val
-
-                    if (ModelBoat.Type == null)
-                        cout.Print(View.ConsoleIn.FAQBoatType));
-                        ModelBoat.Type  = (Model.Boat.TypeBoat)cin.readKeyToInt();
-                    if (ModelBoat.Length == null)
-                        ModelBoat.Length = cin.readString(View.ConsoleIn.FAQBoatLength);
-
+                    if (ModelBoat.GroupId == null) 
+                    {
+                        cout.Print(View.ConsoleIn.FAQBoatAddSSN);
+                        ModelBoat.GroupId = cin.readString();
+                        if (MemberCatalog.Read(ModelBoat.GroupId) == null)
+                        {
+                            ModelBoat.GroupId = null;
+                            throw new Exception(View.Error.ErroMessageNonExistingMember);
+                        }
+                    }
+         
+                    if (ModelBoat.Type == Model.Boat.TypeBoat.StateLess) 
+                    {
+                        cout.Print(View.ConsoleIn.FAQBoatType);
+                        ModelBoat.Type = (Model.Boat.TypeBoat)cin.readKeyToInt() - 1;
+                    }
+                        
+                    if (ModelBoat.Length == 0) 
+                    {
+                        cout.Print(View.ConsoleIn.FAQBoatLength);
+                        ModelBoat.Length = int.Parse(cin.readString());
+                    }
+                        
                     // We now ha a local ModelBoat but...
                     // Add Boat to BoatCatalog
-                    BoatCatalog.AddBoat(ModelBoat);
+                    BoatCatalog.Add(ModelBoat);
                     // Now it's reachable also easily from index...
 
-                    if(cin.boolResponseOfQuestion(View.ConsoleIn.FAQGTakeMeToMenuBoat, "yY"))
-                        menuConfig(View.MenuBoat.Menu.StateLess, false, true);
-                    
-                    // Exit While. Because we've succeded in creating a new boat.
-                    runWhile = false;
-
-                    return ModelBoat;
+                    if (cin.boolResponseOfQuestion(View.ConsoleIn.FAQGTakeMeToMenuBoat, "yY")) 
+                    {
+                        menuBoat.ModelMenu.State = Model.Menu.MainMenu.MenuBoat;
+                        menuBoat.ModelMenu.IsActive = true;
+                        menuBoat.State = View.MenuBoat.Menu.StateLess;
+                        runWhile = false;
+                    }
+                    else 
+                    {
+                        menuBoat.ModelMenu.State = Model.Menu.MainMenu.MenuBoat;
+                        menuBoat.ModelMenu.IsActive = true;
+                        menuBoat.State = View.MenuBoat.Menu.Create;
+                        runWhile = true;
+                    }
                 }
                 catch (Exception e)
                 {
                     new View.Error(e);
                     // Ask for continuing if an exception has been throwned in your face ;)
-                    runWhile = cin.boolResponseOfQuestion(View.ConsoleIn.FAQContinueWithY, "yY");
+                    if (cin.boolResponseOfQuestion(View.ConsoleIn.FAQContinueWithY, "yY"))
+                    {
+                        menuBoat.ModelMenu.State = Model.Menu.MainMenu.MenuBoat;
+                        menuBoat.ModelMenu.IsActive = true;
+                        menuBoat.State = View.MenuBoat.Menu.Create;
+                        runWhile = true;
+                    }
+                    else 
+                    {
+                        menuBoat.ModelMenu.State = Model.Menu.MainMenu.MenuBoat;
+                        menuBoat.ModelMenu.IsActive = true;
+                        menuBoat.State = View.MenuBoat.Menu.StateLess;
+                        runWhile = false;
+                    }
                 }
             }
-            // Client canceled. Change State for menu.
-            if(cin.boolResponseOfQuestion(View.ConsoleIn.FAQGTakeMeToMenuBoat, "yY"))
-                menuConfig(View.MenuBoat.Menu.StateLess, false, true);
-                        
+            //Client canceled. Change State for menu.
+            if (cin.boolResponseOfQuestion(View.ConsoleIn.FAQGTakeMeToMenuBoat, "yY")) 
+            {
+                menuBoat.ModelMenu.State = Model.Menu.MainMenu.MenuBoat;
+                menuBoat.ModelMenu.IsActive = true;
+                menuBoat.State = View.MenuBoat.Menu.StateLess;
+                runWhile = false;
+            }
+                                   
             return null;
         }
 
@@ -84,28 +129,27 @@ namespace WS_2_NYAST.Controller
         /// <param name="state"></param>
         /// <param name="hasState"></param>
         /// <param name="isActive"></param>
-        private void menuConfig(View.MenuBoat.Menu state, bool hasState, bool isActive)
+        public void menuConfig(View.MenuBoat.Menu state, bool hasState, bool isActive)
         {
             menuBoat.State                = state   ;
-            // HasState Deprecated!!!
             menuBoat.ModelMenu.HasState   = hasState  ;
             menuBoat.ModelMenu.IsActive   = isActive  ;
         }  
-  
-        /// <summary>
-        /// Set declared Model.Member class property to null
-        /// </summary>
-        private void DeleteCurrentBoat()
-        {
-            ModelBoat = null;
-        }
-                                   
-        internal void Stateless()
+                                     
+        public void Stateless()
         {
  	        throw new NotImplementedException();
         }
-        
-        public List<Model.Boat> Boat Update(Model.Member member)
+
+        /// <summary>
+        /// In the primary boatcatalog there's no id for a boat.
+        /// Instead it's a groupid. So it's possible to save
+        /// a group with SSN for example a person. But it could be whatever elses
+        /// Decoupled classes!
+        /// </summary>
+        /// <param name="member"></param>
+        /// <returns></returns>
+        public void Update()
         {
             // Start Region :: Prepare
             ModelBoat = new Model.Boat();
@@ -116,48 +160,71 @@ namespace WS_2_NYAST.Controller
             {
                 try
                 {
-                    
+
+                    // Client want to update a boat or more in a boatcatalopg 
+                    // In our case we use pers. nr. to ask about one or more bots.
+                    string SSN = cin.ResponseToAskedQustion(View.ConsoleIn.FAQwhatsSSN);
                     // And here´s Member if exists....
-                    BoatCatalog = BoatCatalog.Read(Model.Member member);
+                    ModelMember = MemberCatalog.Read(SSN);
                     // ...Here's what we found :)
 
-                    cout.Print(View.ConsoleIn.FAQMemberWasFoundBySSN);
-                    cout.Print(ModelMember.PersonalNumber);
-                    cout.Print(ModelMember.FirstName);
-                    cout.Print(ModelMember.LastName);
+                    // And here´s a BoatCatalog....
+                    BoatCatalog = BoatCatalog.Read(ModelMember.PersonalNumber);
+                    // ...Here's what we found :)
 
-                    if (cin.boolResponseOfQuestion(View.ConsoleIn.FAQMemberReallyUpdate, "yY"))
+                    if (BoatCatalog.NrOfBoatsInBoatCatalog() != null || BoatCatalog.NrOfBoatsInBoatCatalog() != 0)
                     {
+                        Counter = 1;
+                        foreach (Model.Boat boat in BoatCatalog)
+                        {
+                            cout.Print(string.Format(View.ConsoleIn.FAQBoatBoatsNrToEdit, Counter));
+                            cout.Print(string.Format(View.ConsoleIn.FAQBoatBoatsfounByGroup, ModelMember.PersonalNumber));
+                            cout.Print(string.Format(View.ConsoleIn.FAQBoatTypeOfBoat, boat.Type));
+                            cout.Print(string.Format(View.ConsoleIn.FAQBoatLengthOfBoat, boat.Length));
+                        }
+                        Counter = 1;
+                    }
+
+                    // We need to ask which of the to edit
+                    if (cin.boolResponseOfQuestion(View.ConsoleIn.FAQProceedUnlock, "yY"))
+                    // Client really want to edit en existing Boat....
+                    {                        
                         while (runWhile)
                         {
                             try
                             {
-                                if (cin.boolResponseOfQuestion(string.Format(View.ConsoleIn.FAQMemberPreviousValue, ModelMember.FirstName), "yY"))
-                                    ModelMember.FirstName = cin.ResponseToAskedQustion(View.MenuBoat.FAQwhatsFirstName);
-                                if (cin.boolResponseOfQuestion(string.Format(View.ConsoleIn.FAQMemberPreviousValue, ModelMember.LastName), "yY"))
-                                    ModelMember.LastName = cin.ResponseToAskedQustion(View.MenuBoat.FAQwhatsLastName);
+                                cout.Print(View.ConsoleIn.FAQBoatWhichtoEdit);
+                                int clientsChoice = cin.readKeyToInt();
+                                // Now we can pick up boat from our MemberCatalog inside of this´class
+                                ModelBoat = BoatCatalog.Read(clientsChoice);
+
+
+                                if (cin.boolResponseOfQuestion(string.Format(View.ConsoleIn.FAQPreviousValue, ModelBoat.GroupId), "yY")) 
+                                {
+                                    ModelBoat.GroupId = cin.ResponseToAskedQustion(View.ConsoleIn.FAQBoatNewSSN);
+                                }
                                 
-                                //SSN SECURED! No Dialogue!    
-                                ModelMember.PersonalNumber = ModelMember.PersonalNumber;
-;
+                                if (cin.boolResponseOfQuestion(string.Format(View.ConsoleIn.FAQPreviousValue, ModelBoat.Type), "yY"))
+                                {
+                                    cout.Print(View.ConsoleIn.FAQBoatType);
+                                    ModelBoat.Type  = (Model.Boat.TypeBoat)cin.readKeyToInt();
+                                }
 
-                                // We now ha a local ModelMember updated but....
-                                // Also time to update Member in MemberCatalog
-                                MemberCatalog.Update(ModelMember);
-                                // Now Member has fantastico updated values. Hey!
-
-                                cout.Print(View.ConsoleIn.FAQMemberWasUpdated);
-                                cout.Print(ModelMember.PersonalNumber);
-                                cout.Print(ModelMember.FirstName);
-                                cout.Print(ModelMember.LastName);
+                                if (cin.boolResponseOfQuestion(string.Format(View.ConsoleIn.FAQPreviousValue, ModelBoat.Length), "yY")) 
+                                {
+                                    ModelBoat.Length = int.Parse(cin.ResponseToAskedQustion(View.ConsoleIn.FAQBoatLength));
+                                }
+                                    
+                                // Really hope this works. Thatv boat are updated in common Membercatalog
+                                // Created in index in init of application...
 
                                 if (cin.boolResponseOfQuestion(View.ConsoleIn.FAQGTakeMeToMenuBoat, "yY"))
                                     menuConfig(View.MenuBoat.Menu.StateLess, false, true);
 
-                                // Exit While. Because we've succeded in creating a new member.
+                                // Exit While. Because we've succeded in updating a existing boat.
                                 runWhile = false;
 
-                                return ModelMember;
+                                return;
                             }
                             catch (Exception e)
                             {
@@ -169,26 +236,39 @@ namespace WS_2_NYAST.Controller
                     }
                     // Client canceled. Change State for menu.
                     if (cin.boolResponseOfQuestion(View.ConsoleIn.FAQGTakeMeToMenuBoat, "yY"))
-                        menuConfig(View.MenuBoat.Menu.StateLess, false, true);
+                    {
+                        menuBoat.ModelMenu.State = Model.Menu.MainMenu.MenuBoat;
+                        menuBoat.ModelMenu.IsActive = true;
+                        menuBoat.State = View.MenuBoat.Menu.StateLess;
+                        runWhile = true;
+                    }
 
-                    return null;
+                    return;
                 
                 }
                 catch (Exception e)
                 {
                     new View.Error(e);
                     // Ask for continuing if an exception has been throwned in your face ;)
-                    runWhile = cin.boolResponseOfQuestion(View.ConsoleIn.FAQContinueWithY, "yY");
+                    if (cin.boolResponseOfQuestion(View.ConsoleIn.FAQContinueWithY, "yY")) 
+                    {
+                        menuBoat.ModelMenu.State = Model.Menu.MainMenu.MenuBoat;
+                        menuBoat.ModelMenu.IsActive = true;
+                        menuBoat.State = View.MenuBoat.Menu.Update;
+                        runWhile = true;
+                    }
+                    else 
+                    {
+                        menuBoat.ModelMenu.State = Model.Menu.MainMenu.MenuBoat;
+                        menuBoat.ModelMenu.IsActive = true;
+                        menuBoat.State = View.MenuBoat.Menu.StateLess;
+                        runWhile = false;
+                    }
                 }
             }
-            return ModelMember;
+            return;
         }
         
-        /// <summary>
-        /// Fetch Member by SSN. Also let it print from cout in view if you wnat....
-        /// </summary>
-        /// <param name="coutPrint">Uses cout and print....</param>
-        /// <returns></returns>
         public Model.Member Read(bool coutPrint)
         {
 
@@ -226,45 +306,52 @@ namespace WS_2_NYAST.Controller
                 {
                     new View.Error(View.Error.ErroMessageNonExistingMember);
                     // Ask for continuing if an exception has been throwned in your face ;)
-                    runWhile = cin.boolResponseOfQuestion(View.ConsoleIn.FAQContinueWithY, "yY");
+                    if (cin.boolResponseOfQuestion(View.ConsoleIn.FAQContinueWithY, "yY"))
+                    {
+                        menuBoat.ModelMenu.State = Model.Menu.MainMenu.MenuBoat;
+                        menuBoat.ModelMenu.IsActive = true;
+                        menuBoat.State = View.MenuBoat.Menu.Read;
+                        runWhile = true;
+                    }
+                    else
+                    {
+                        menuBoat.ModelMenu.State = Model.Menu.MainMenu.MenuBoat;
+                        menuBoat.ModelMenu.IsActive = true;
+                        menuBoat.State = View.MenuBoat.Menu.StateLess;
+                        runWhile = false;
+                    }
                 }
             }
 
             return ModelMember;
-
         }
 
 
         public void Delete()
         {
-            // Start Region :: Prepare
-            ModelMember = null;
-            runWhile = true;
-            // End   Region :: Prepare
+            Preparing();
 
             while (runWhile)
             {
                 try
                 {
-                    // Client want to delete a member with SSN
-                    string SSN = cin.ResponseToAskedQustion(View.ConsoleIn.FAQwhatsSSN);
-                    // And here´s Member if exists....
-                    ModelMember = MemberCatalog.Read(SSN);
-                    // ...Here's what we found :)
+                    DeleteMemeberBySSN();
 
                     // Print Member before delete!
-                        cout.Print(ModelMember.PersonalNumber);
-                        cout.Print(ModelMember.FirstName);
-                        cout.Print(ModelMember.LastName);   
+                    ShowBeforeDeleting();   
                 
                     // Exit While. Because we've succeded in reading a member.
-                    if (cin.boolResponseOfQuestion(View.ConsoleIn.FAQMemberReallyDelete, "yY"))
-                        MemberCatalog.Delete(ModelMember);
-                
+                        if (cin.boolResponseOfQuestion(View.ConsoleIn.FAQMemberReallyDelete, "yY")) 
+                        {
+                            MemberCatalog.Delete(ModelMember);
+                        }
+
+                        Console.Write("uppdatera båt?");
+
                     // Print deleted Member as confirm for user
 
                     cout.Print(View.ConsoleIn.FAQMemberWasDeleted);
-                        cout.Print(ModelMember.PersonalNumber);
+                    cout.Print(ModelMember.PersonalNumber);
                     
                     // Exit While. We're done here!
                     runWhile = false;
@@ -274,19 +361,76 @@ namespace WS_2_NYAST.Controller
                 {
                     new View.Error(View.Error.ErroMessageNonExistingMember);
                     // Ask for continuing if an exception has been throwned in your face ;)
-                    runWhile = cin.boolResponseOfQuestion(View.ConsoleIn.FAQContinueWithY, "yY");
+                    if (cin.boolResponseOfQuestion(View.ConsoleIn.FAQContinueWithY, "yY")) 
+                    {
+                        DoContinue();            
+                    }
+                    else 
+                    {
+                        DoNotContinue(); 
+                    }
                 }
             }
         }
 
-        internal void Save()
+        public void Preparing()
         {
- 	        throw new NotImplementedException();
+            // Start Region :: Prepare
+            ModelMember = null;
+            runWhile = true;
+            // End   Region :: Prepare
         }
-        internal void Quit()
+
+        public void DeleteMemeberBySSN()
         {
+            // Client want to delete a member with SSN
+            string SSN = cin.ResponseToAskedQustion(View.ConsoleIn.FAQwhatsSSN);
+            // And here´s Member if exists....
+            ModelMember = MemberCatalog.Read(SSN);
+            // ...Here's what we found :)
+        }
+
+        public void ShowBeforeDeleting()
+        {
+            cout.Print(ModelMember.PersonalNumber);
+            cout.Print(ModelMember.FirstName);
+            cout.Print(ModelMember.LastName);
+        }
+
+        public void DoContinue()
+        {
+            menuBoat.ModelMenu.State = Model.Menu.MainMenu.MenuBoat;
+            menuBoat.ModelMenu.IsActive = true;
+            menuBoat.State = View.MenuBoat.Menu.Delete;
+            runWhile = true;
+        }
+
+        public void DoNotContinue()
+        {
+            menuBoat.ModelMenu.State = Model.Menu.MainMenu.MenuBoat;
+            menuBoat.ModelMenu.IsActive = true;
+            menuBoat.State = View.MenuBoat.Menu.StateLess;
+            runWhile = false;
+        }
+
+        public void Save()
+        {
+            if (new WS_2_NYAST.MODEL.ToFileDAL().save(BoatCatalog, MemberCatalog))
+            {
+                cout.Print("\n\nKatalogerna sparades till fill...\n\n");
+                System.Threading.Thread.Sleep(3000);
+
+                menuBoat.ModelMenu.State = Model.Menu.MainMenu.MenuMember;
+                menuBoat.ModelMenu.IsActive = false;
+                menuBoat.State = View.MenuBoat.Menu.StateLess;
+            }
+        }
+     
+        public void Quit()
+        {
+            menuBoat.ModelMenu.State = Model.Menu.MainMenu.MenuMain;
             menuBoat.ModelMenu.IsActive = false;
-            menuBoat.ModelMenu.HasState = false;
+            menuBoat.State = View.MenuBoat.Menu.StateLess;
         }      
     }
 }

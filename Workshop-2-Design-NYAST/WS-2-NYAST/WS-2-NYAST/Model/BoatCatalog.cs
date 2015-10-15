@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,10 +7,18 @@ using System.Threading.Tasks;
 
 namespace WS_2_NYAST.Model
 {
-    class BoatCatalog
+    public class BoatCatalog : IEnumerable
     {
 
-        private List<Boat> boats;
+        public List<Boat> boats;
+        
+        public int position;
+
+        public BoatCatalog(List<Boat> Boats) 
+        {
+            boats = Boats;
+        }
+    
 
         public BoatCatalog() 
         {
@@ -18,7 +27,17 @@ namespace WS_2_NYAST.Model
 
         public void Create()
         {
-            throw new NotImplementedException();
+            boats = new List<Boat>();
+
+            if (boats == null)
+            {
+                throw new Exception("Fail: The Catalog of members could not be created!");
+            }
+        }
+
+        public List<Boat> Read()
+        {
+            return boats;
         }
 
         public Model.BoatCatalog Read(string groupId)
@@ -29,10 +48,15 @@ namespace WS_2_NYAST.Model
             {
                 if (boat.GroupId == groupId)
                 {
-                    boatCatalogByGroupId.AddBoat(boat);
+                    boatCatalogByGroupId.Add(boat);
                 }
             }
             return boatCatalogByGroupId;
+        }
+
+        public Model.Boat Read(int indexInBoats) 
+        {
+            return boats[indexInBoats];
         }
 
         public void Update()
@@ -45,10 +69,28 @@ namespace WS_2_NYAST.Model
             throw new NotImplementedException();
         }
 
-        public Model.Boat AddBoat(Boat boat)
+        public Model.Boat Add(Boat boat)
         {
             boats.Add(boat);
             return boat;
         }
+
+        public int? NrOfBoatsInBoatCatalog() 
+        {
+            return boats.Count;
+        }
+
+        public IEnumerator<Boat> GetEnumerator()
+        {
+            return boats.GetEnumerator();
+        }
+
+
+        IEnumerator IEnumerable.GetEnumerator() 
+        {
+            return boats.GetEnumerator();
+        }
+
+ 
     }
 }

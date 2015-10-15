@@ -6,21 +6,12 @@ using System.Threading.Tasks;
 
 namespace WS_2_NYAST.Model
 {
-    // If adding fields in this class these should be added in this enum.
-    // Great if we need to switch for an update etc etc etc
-    public enum FieldInModelMember 
+ 
+    public class Member
     {
-        firsName,
-        lastName,
-        SSN
-    }
-
-
-    class Member
-    {
-        private string firstName;
-        private string lastName;
-        private string SSN;
+        public string firstName;
+        public string lastName;
+        public string SSN;
         public Member() 
         {
             // Empty
@@ -59,7 +50,7 @@ namespace WS_2_NYAST.Model
                 SSN = value;
             }  
         }
-        private bool validateText(string value, int minChars, int maxChars)
+        public bool validateText(string value, int minChars, int maxChars)
         {
             if (string.IsNullOrEmpty(value)) 
             {

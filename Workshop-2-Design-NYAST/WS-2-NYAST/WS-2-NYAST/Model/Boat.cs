@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace WS_2_NYAST.Model
 {
-    class Boat
+    public class Boat
     {
 
-        public enum TypeBoat { Sailboat, Motorsailer, Kayak_Canoe, Other}
+        public enum TypeBoat { StateLess, Sailboat, Motorsailer, Kayak_Canoe, Other}
 
 
         public TypeBoat Type { get; set; }

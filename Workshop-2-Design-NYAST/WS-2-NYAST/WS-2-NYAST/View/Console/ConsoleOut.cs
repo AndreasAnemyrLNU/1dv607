@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WS_2_NYAST.View
 {
-    class ConsoleOut
+    public class ConsoleOut
     {
         public void Print(string str) 
         {

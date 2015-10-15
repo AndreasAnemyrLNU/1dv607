@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace WS_2_NYAST.View
 {
-    class ConsoleIn
+    public class ConsoleIn
     {
         public int readKeyToInt()
         {
-            return (int)Console.ReadKey(true).KeyChar -48;
-        
+            return (int)Console.ReadKey(true).KeyChar - 48;
+
         }
 
-        public string readString() 
+        public string readString()
         {
             return Console.ReadLine();
         }
@@ -41,10 +41,10 @@ namespace WS_2_NYAST.View
         /// <param name="validChars">Thes letters returns true if pressed</param>
         /// <returns></returns>
         public bool boolResponseOfQuestion(string question, string validChars)
-        {    
+        {
             string input = ResponseToAskedQustionNonEnterPress(question).ToString();
 
-            string pattern = @"[" +validChars+ "]";
+            string pattern = @"[" + validChars + "]";
 
             Match match = Regex.Match(input, pattern, RegexOptions.IgnoreCase);
 
@@ -53,40 +53,48 @@ namespace WS_2_NYAST.View
 
             return false;
         }
-    
+
         // Start Region :: Interaction...
-        public const string FAQContinueWithY        = "(y) Continue?";
-        public const string FAQCancelWithN          = "(n) Cancel?) ?";
+        public const string FAQContinueWithY    = "(y) Continue?";
+        public const string FAQCancelWithN      = "(n) Cancel?) ?";
+        public const string FAQProceedUnlock    = "(y) Unlock data and start edit?";
+        public const string FAQPreviousValue = "(y) Previous value was {0}. Update?";
         // End  Regions :: Interaction...
 
         // Start Region :: FAQ Menus
-        public const string FAQTakeMeToMenuMain     = "(y) Take me to Menu \"Main\"   ?";
-        public const string FAQGTakeMeToMenuMember  = "(y) Take me to Menu \"Member\" ?";
-        public const string FAQGTakeMeToMenuQuit    = "(y) Take me to menu \"Quit\"   ?";
-        public const string FAQGTakeMeToMenuBoat    = "(y) Take me to menu \"Boat\"   ?";
-        public const string FAQGTakeMeToMenuSave    = "(y) Take me to menu \"Save\"   ?";
+        public const string FAQTakeMeToMenuMain = "(y) Take me to Menu \"Main\"   ?";
+        public const string FAQGTakeMeToMenuMember = "(y) Take me to Menu \"Member\" ?";
+        public const string FAQGTakeMeToMenuQuit = "(y) Take me to menu \"Quit\"   ?";
+        public const string FAQGTakeMeToMenuBoat = "(y) Take me to menu \"Boat\"   ?";
+        public const string FAQGTakeMeToMenuSave = "(y) Take me to menu \"Save\"   ?";
         // End Region :: FAQ Menus
 
         // Start Region :: Member
         public const string FAQMemberWhatsFirstName = "What´s the firstname of member?";
-        public const string FAQwhatsLastName        = "What´s the lastname of member?";
-        public const string FAQwhatsSSN             = "What´s the SSN of member?";
-        public const string FAQMemberReallyDelete   = "(y) Really, delete meber? : ";
-        public const string FAQMemberReallyUpdate   = "(y) Really, eidt/update memer? : ";
-        public const string FAQMemberWasDeleted     = "This Member was deleted!";
-        public const string FAQMemberWasUpdated     = "This Member was updated!";
-        public const string FAQMemberWasFoundBySSN  = "This Member was found by SSN!";
-        public const string FAQMemberPreviousValue  = "(y) Previous value was {0}. Update?";
+        public const string FAQwhatsLastName = "What´s the lastname of member?";
+        public const string FAQwhatsSSN = "What´s the SSN of member?";
+        public const string FAQMemberReallyDelete = "(y) Really, delete meber? : ";
+        public const string FAQMemberReallyUpdate = "(y) Really, edit/update member? : ";
+        public const string FAQMemberWasDeleted = "This Member was deleted!";
+        public const string FAQMemberWasUpdated = "This Member was updated!";
+        public const string FAQMemberWasFoundBySSN = "This Member was found by SSN!";
         // End Regions :: Member
 
         // Start Region :: Boat
-        public const string FAQBoatType             = "Pick one type of boat: \n\n(0)Sailboat\n(1)Motorsailer\n(2)Kayak/Canoe\n(3)Other";
-        public const string FAQMemberWasFoundBySSN  = "This boat was was saved";
+        public const string FAQBoatAddSSN = "Add SSN (groupid) for this boat";
+        public const string FAQBoatType = "Pick one type of boat: \n\n(1)Sailboat\n(2)Motorsailer\n(3)Kayak/Canoe\n(4)Other";
+        public const string FAQBoatNewSSN = "Enter a new SSN for an existing Member to change owner";
+        public const string FAQBoatLength = "What's the length of boat (cm)?";
+        public const string FAQBoatTypeOfBoat = "Type of boat : {0}";
+        public const string FAQBoatLengthOfBoat = "Boat has an length of {0} cm";
+        public const string FAQBoatBoatsfounByGroup = "These boats belongs to : {0}";
+        public const string FAQBoatBoatsNrToEdit = "Want to edit?  Press {0}";
+        public const string FAQBoatWhichtoEdit = "Enter the boat you wan't to edit.\n(Enter digit from list of boats above.";
+        public const string FAQBoatWasUpdated = "This Boat was updated!";
         // End Region   :: Boat
 
         // Start Region :: Quit
-        public const string FAQQuitMessage          = "Application quits in {0} millissecs!";
-        // End Region :: Quit
-
-        public const string FAQBoatLength           = "What's the length of boat (cm)?";             
+        public const string FAQQuitMessage = "Application quits in {0} millissecs!";
+        // End Region   :: Quit
+    }
 }

@@ -1,14 +1,19 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace WS_2_NYAST.Model
 {
-    class MemberCatalog
+    public class MemberCatalog
     {
-        private List<Member> members;
+        // Counting boats per user to listr
+        public int boatsCounter;
+
+        public List<Member> members;
 
         public MemberCatalog()
         {
@@ -47,6 +52,11 @@ namespace WS_2_NYAST.Model
             return null;
         }
 
+        public List<Member> Read()
+        {
+            return members;
+        }
+
         public Member Update(Member toBeUpdated)
         {
             foreach (Member member in members)
@@ -71,8 +81,90 @@ namespace WS_2_NYAST.Model
 
         public Member AddMember(Member member)
         {
+            foreach (Model.Member _member in members) 
+            {
+                if (_member.PersonalNumber == member.PersonalNumber)
+                {
+                    throw new Exception(View.Error.ErroMessageAlreadyExistingMember);
+                }
+            }
             members.Add(member);
             return member;
+        }
+
+        //Needed for IEnumerator, IEnumerable
+        public object Current
+        {
+            get { return members[_position]; }
+        }
+
+        //Needed for IEnumerator, IEnumerable
+        public bool MoveNext()
+        {
+            position++;
+            return (position < members.Count);
+        }
+
+        //Needed for IEnumerator, IEnumerable
+        public void Reset()
+        {
+            { position = -1; }
+        }
+
+        //Needed for IEnumerator, IEnumerable
+        public IEnumerator GetEnumerator()
+        {
+            return (IEnumerator)this;
+        }
+
+        //Needed for IEnumerator, IEnumerable
+        public int _position = -1;
+        public int position;
+
+        public List<Compact> Compact(Model.BoatCatalog boatCatalog) 
+        {
+            List<Compact> compacts = new List<Compact>(members.Count);
+
+            foreach(Model.Member member in members)
+            {
+                foreach(Model.Boat boat in boatCatalog)
+                {
+                    if(boat.GroupId == member.PersonalNumber)
+                        boatsCounter++;
+                }
+                compacts.Add(new Compact(member.SSN, member.FirstName, member.lastName, boatsCounter));
+                boatsCounter = 0;
+            }
+
+            return compacts;
+        }
+
+        public List<Verbose> Verbose(Model.BoatCatalog boatCatalog)
+        {
+            List<Verbose> verboses = new List<Verbose>(members.Count);
+
+            foreach (Model.Member member in members)
+            {
+                foreach (Model.Boat boat in boatCatalog)
+                {
+                    if (boat.GroupId == member.SSN) 
+                    {
+                        verboses.Add
+                        (
+                            new Verbose
+                            (
+                                member.SSN,
+                                member.FirstName,
+                                member.lastName,
+                                boat.Length
+                                //boat.Type
+                            )   
+                        );
+                    }
+                }
+            }
+
+            return verboses;
         }
     }
 }

@@ -1,35 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="WS_2_NYAST.Controller.index">
-    <Position X="8.25" Y="2.5" Width="3.75" />
+    <Position X="13" Y="4" Width="2" />
     <AssociationLine Name="MemberCatalog" Type="WS_2_NYAST.Model.MemberCatalog" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="10.375" Y="2.5" />
-        <Point X="10.375" Y="2.125" />
-        <Point X="18.75" Y="2.125" />
+        <Point X="14.133" Y="4" />
+        <Point X="14.133" Y="3.625" />
+        <Point X="18.75" Y="3.625" />
         <Point X="18.75" Y="7" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>ECAAAAAEBAAAABCABAAAAhAAiAAICAgACAAAAQAACQA=</HashCode>
+      <HashCode>ECAAAAAEBAAAQBCABAAAAhAAiAAICAgACAAAAQAACQA=</HashCode>
       <FileName>Controller\index.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Cin" />
-      <Property Name="Cout" />
       <Property Name="MemberCatalog" />
+      <Property Name="Cout" />
     </ShowAsAssociation>
   </Class>
   <Class Name="WS_2_NYAST.Controller.member">
-    <Position X="14.5" Y="10.25" Width="1.5" />
+    <Position X="13" Y="9.25" Width="2" />
+    <AssociationLine Name="menuMember" Type="WS_2_NYAST.View.MenuMember" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="13.938" Y="13.564" />
+        <Point X="13.938" Y="15.066" />
+        <Point X="4.812" Y="15.066" />
+        <Point X="4.812" Y="14.691" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="ModelMember" Type="WS_2_NYAST.Model.Member" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="14.688" Y="13.564" />
+        <Point X="14.688" Y="13.814" />
+        <Point X="15.25" Y="13.814" />
+        <Point X="15.25" Y="11.926" />
+        <Point X="18" Y="11.926" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAQAAIAAQAAMAAAAAAAAAAAoiAEQAEAAAAAAAAAAAQA=</HashCode>
+      <HashCode>ACQAAIAAQIAMAAAAAAAAAAAoiAEQAEAAAAAAAIAAAQA=</HashCode>
       <FileName>Controller\member.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="menuMember" />
-      <Field Name="cin" />
       <Field Name="cout" />
+      <Field Name="menuMember" />
       <Field Name="ModelMember" />
       <Property Name="MemberCatalog" />
     </ShowAsAssociation>
@@ -42,7 +57,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="WS_2_NYAST.Model.Menu">
-    <Position X="1.25" Y="3" Width="1.5" />
+    <Position X="0.75" Y="1.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
@@ -65,15 +80,8 @@
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="WS_2_NYAST.View.ConsoleIn" Collapsed="true">
-    <Position X="10.5" Y="6" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>FAgJAAAAIIEQAQgABAAAAAAgIAABAACoAAEAAQAAAAA=</HashCode>
-      <FileName>View\Console\ConsoleIn.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="WS_2_NYAST.View.ConsoleOut" Collapsed="true">
-    <Position X="8.25" Y="6" Width="1.5" />
+    <Position X="7.25" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
       <FileName>View\Console\ConsoleOut.cs</FileName>
@@ -82,12 +90,12 @@
   <Class Name="WS_2_NYAST.View.Error">
     <Position X="23.5" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAgAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAAAAAAAAAAACAABAAAAAAAAA=</HashCode>
       <FileName>View\Error\Error.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WS_2_NYAST.View.BaseMenu">
-    <Position X="4.5" Y="5.75" Width="1.5" />
+    <Position X="6.25" Y="9.5" Width="1.5" />
     <NestedTypes>
       <Enum Name="WS_2_NYAST.View.BaseMenu.Menu" Collapsed="true">
         <TypeIdentifier>
@@ -100,42 +108,76 @@
       <FileName>View\Menu\BaseMenu.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Cin" />
-      <Property Name="Cout" />
       <Property Name="ModelMenu" />
+      <Property Name="Cout" />
     </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="WS_2_NYAST.View.MenuBoat" Collapsed="true">
-    <Position X="8.25" Y="10" Width="1.5" />
+    <Position X="8.5" Y="14" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="WS_2_NYAST.View.MenuBoat.Menu" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>View\Menu\MenuBoat.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
     <TypeIdentifier>
       <HashCode>AAgAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>View\Menu\MenuBoat.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WS_2_NYAST.View.MenuMain" Collapsed="true">
-    <Position X="1.5" Y="10" Width="1.5" />
+    <Position X="1.75" Y="14" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="WS_2_NYAST.View.MenuMain.Menu" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>View\Menu\MenuMain.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
     <TypeIdentifier>
       <HashCode>QAgAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAABAAAACA=</HashCode>
       <FileName>View\Menu\MenuMain.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WS_2_NYAST.View.MenuMember" Collapsed="true">
-    <Position X="3.75" Y="10" Width="1.5" />
+    <Position X="4" Y="14" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="WS_2_NYAST.View.MenuMember.Menu" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>View\Menu\MenuMember.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
     <TypeIdentifier>
       <HashCode>AAgAAAAAAAEAAEAAAAAEAAAAIAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>View\Menu\MenuMember.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WS_2_NYAST.View.MenuQuit" Collapsed="true">
-    <Position X="6" Y="10" Width="1.5" />
+    <Position X="6.25" Y="14" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="WS_2_NYAST.View.MenuQuit.Menu" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>View\Menu\MenuQuit.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
     <TypeIdentifier>
       <HashCode>AAgAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>View\Menu\MenuQuit.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WS_2_NYAST.View.MenuSave" Collapsed="true">
-    <Position X="10.5" Y="10" Width="1.5" />
+    <Position X="10.75" Y="14" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="WS_2_NYAST.View.MenuSave.Menu" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>View\Menu\MenuSave.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
     <TypeIdentifier>
       <HashCode>AAgAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>View\Menu\MenuSave.cs</FileName>
@@ -144,23 +186,23 @@
   <Class Name="WS_2_NYAST.Model.MemberCatalog">
     <Position X="18" Y="7" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAgAQEAAEQAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAIIAABBAAAACAIAAgAQEAAEQAIAAAgIAAAAA=</HashCode>
       <FileName>Model\MemberCatalog.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="WS_2_NYAST.View.ConsoleIn" Collapsed="true">
+    <Position X="7.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>FAoJAAAAIIEQEQgCBAAAADAgIAABAASkCAEAAQAAAAE=</HashCode>
+      <FileName>View\Console\ConsoleIn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Interface Name="WS_2_NYAST.View.IMenu" Collapsed="true">
-    <Position X="2" Y="12.5" Width="1.5" />
+    <Position X="18.5" Y="15" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>View\Menu\IMenu.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Enum Name="WS_2_NYAST.Model.FieldInModelMember" Collapsed="true">
-    <Position X="23.5" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>EAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAACAAAAAA=</HashCode>
-      <FileName>Model\Member.cs</FileName>
-    </TypeIdentifier>
-  </Enum>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

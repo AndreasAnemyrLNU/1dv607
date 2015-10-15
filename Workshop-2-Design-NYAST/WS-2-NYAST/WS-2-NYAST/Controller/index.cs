@@ -9,12 +9,12 @@ namespace WS_2_NYAST.Controller
     class index
     {
         // Test the current menu to update and so...
-        private View.BaseMenu Menu { get; set; }
+        public View.BaseMenu Menu { get; set; }
 
         // Start Region :: Menu stuff
         // Lists...
-        private List<View.IMenu> IMenus     { get; set; }
-        private List<Model.Menu> ModelMenus { get; set; }
+        public List<View.IMenu> IMenus     { get; set; }
+        public List<Model.Menu> ModelMenus { get; set; }
         // Lists...   
         View.MenuMain   ViewMenuMain    { get; set; }
         View.MenuMember ViewMenuMember  { get; set; }
@@ -27,16 +27,18 @@ namespace WS_2_NYAST.Controller
         Model.Menu MenuMember           { get; set; }
         Model.Menu MenuQuit             { get; set; }
         Model.Menu MenuSave              { get; set; } 
-
-
         // End Region   :: Menu stuff
 
+        WS_2_NYAST.MODEL.ToFileDAL FileDal;
+
         // Start Region :: Catalogs/Register - cached. Persistent saving from these..
-        private Model.MemberCatalog MemberCatalog { get; set; }
+    
+        public Model.MemberCatalog MemberCatalog { get; set; }
+        public Model.BoatCatalog BoatCatalog { get; set; }
         // End Regions  :: Catalogs/Register - cached. Persistent svaing from these...
 
-        private View.ConsoleIn Cin { get; set; }
-        private View.ConsoleOut Cout { get; set;}
+        public View.ConsoleIn Cin { get; set; }
+        public View.ConsoleOut Cout { get; set;}
         
 
         public index()  
@@ -44,12 +46,18 @@ namespace WS_2_NYAST.Controller
             Cin = new View.ConsoleIn();
             Cout = new View.ConsoleOut();
             MemberCatalog = new Model.MemberCatalog();
-            // To create the list in the class. Nothing more...
+            // To create the list so it exists...
             MemberCatalog.Create();
+            BoatCatalog = new Model.BoatCatalog();
+            BoatCatalog.Create();
+            // To create the list so it exists...
+
+            // Persistent storing...
+            FileDal = new WS_2_NYAST.MODEL.ToFileDAL();
         }
          
         // New menus must be added here
-        private void PrepareMenus()
+        public void PrepareMenus()
         {
             //TODO Replace with loop over all existing menus
             IMenus = new List<View.IMenu>();
@@ -76,7 +84,7 @@ namespace WS_2_NYAST.Controller
             IMenus.Add(ViewMenuSave);
         }
 
-        private void DoMenu() 
+        public void DoMenu() 
         {
 
             while (ViewMenuMain.ModelMenu.State != Model.Menu.MainMenu.StateLess)
@@ -96,7 +104,7 @@ namespace WS_2_NYAST.Controller
                     
                     case WS_2_NYAST.Model.Menu.MainMenu.MenuMember:
 
-                       
+                        // Nothing has been choosen from menu...
                         if (ViewMenuMember.State == View.MenuMember.Menu.StateLess)
                         {
                             Menu = ViewMenuMember;
@@ -106,7 +114,7 @@ namespace WS_2_NYAST.Controller
                         else
                         {
                             // Cretae Controller for member
-                            var ControllerMember = new Controller.member(Cin, Cout, ViewMenuMember, MemberCatalog);
+                            var ControllerMember = new Controller.member(Cin, Cout, ViewMenuMember, MemberCatalog, BoatCatalog);
 
                             switch (ViewMenuMember.State)
                             {
@@ -125,6 +133,12 @@ namespace WS_2_NYAST.Controller
                                 case WS_2_NYAST.View.MenuMember.Menu.Delete:
                                     ControllerMember.Delete();
                                     break;
+                                case WS_2_NYAST.View.MenuMember.Menu.Compact:
+                                    ControllerMember.Compact();
+                                    break;
+                                case WS_2_NYAST.View.MenuMember.Menu.Verbose:
+                                    ControllerMember.Verbose();
+                                    break;
                                 case WS_2_NYAST.View.MenuMember.Menu.Save:
                                     ControllerMember.Save();
                                     break;
@@ -132,17 +146,14 @@ namespace WS_2_NYAST.Controller
                                     ControllerMember.Quit();
                                     ViewMenuMain.ModelMenu.State = Model.Menu.MainMenu.MenuMain;
                                     ViewMenuMain.ModelMenu.IsActive = true;
-                                    Menu = ViewMenuMain;
                                     break;
                             }
                         }
                         break;
                     
                     case WS_2_NYAST.Model.Menu.MainMenu.MenuBoat:
-                        Menu = ViewMenuBoat;
-                        Menu.ShowIt(Menu, IMenus);
 
-                        if (ViewMenuBoat.ModelMenu.State == View.MenuBoat.Menu.StateLess)
+                        if (ViewMenuBoat.State == View.MenuBoat.Menu.StateLess)
                         {
                             Menu = ViewMenuBoat;
                             Menu.ShowIt(Menu, IMenus);
@@ -151,38 +162,36 @@ namespace WS_2_NYAST.Controller
                         else
                         {
                             // Cretae Controller for member
-                            var ControllerMember = new Controller.Boat(Cin, Cout, ViewMenuBoat, MemberCatalog);
+                            var ControllerBoat = new Controller.Boat(Cin, Cout, ViewMenuBoat, MemberCatalog, BoatCatalog);
 
                             switch (ViewMenuBoat.State)
                             {
                                 case WS_2_NYAST.View.MenuBoat.Menu.StateLess:
-                                    ControllerMember.Stateless();
+                                    ControllerBoat.Stateless();
                                     break;
                                 case WS_2_NYAST.View.MenuBoat.Menu.Create:
-                                    ControllerMember.Create(MemberCatalog);
+                                    ControllerBoat.Create(BoatCatalog);
                                     break;
                                 case WS_2_NYAST.View.MenuBoat.Menu.Read:
-                                    ControllerMember.Read(true);
+                                    ControllerBoat.Read(true);
                                     break;
                                 case WS_2_NYAST.View.MenuBoat.Menu.Update:
-                                    ControllerMember.Update();
+                                    ControllerBoat.Update();
                                     break;
                                 case WS_2_NYAST.View.MenuBoat.Menu.Delete:
-                                    ControllerMember.Delete();
+                                    ControllerBoat.Delete();
                                     break;
                                 case WS_2_NYAST.View.MenuBoat.Menu.Save:
-                                    ControllerMember.Save();
+                                    ControllerBoat.Save();
                                     break;
                                 case WS_2_NYAST.View.MenuBoat.Menu.Quit:
-                                    ControllerMember.Quit();
+                                    ControllerBoat.Quit();
                                     ViewMenuMain.ModelMenu.State = Model.Menu.MainMenu.MenuMain;
                                     ViewMenuMain.ModelMenu.IsActive = true;
-                                    Menu = ViewMenuMain;
                                     break;
                             }
                         }                        
-                        
-                        
+                                        
                         break;
                    
                     case WS_2_NYAST.Model.Menu.MainMenu.MenuSave:
@@ -207,10 +216,31 @@ namespace WS_2_NYAST.Controller
 
         public void Do()
         {
+
             PrepareMenus();
+
+
+            string fileBoatCatalog = string.Format("{0}/BoatCatalog.txt", AppDomain.CurrentDomain.BaseDirectory);
+            string fileMembersCatalog = string.Format("{0}/MemberCatlog.txt", AppDomain.CurrentDomain.BaseDirectory);
+
+            try 
+            {
+                BoatCatalog = FileDal.ReadFromXmlFile<Model.BoatCatalog>(fileBoatCatalog);
+                MemberCatalog = FileDal.ReadFromXmlFile<Model.MemberCatalog>(fileMembersCatalog);
+            }
+            catch (Exception e)
+            {
+                new View.Error(e);
+            }
             
+
             DoMenu();
 
+            FileDal.WriteToXmlFile<Model.BoatCatalog>(fileBoatCatalog, BoatCatalog, false);
+            FileDal.WriteToXmlFile<Model.MemberCatalog>(fileMembersCatalog, MemberCatalog, false);
+
+
+    
         }
     }
 }

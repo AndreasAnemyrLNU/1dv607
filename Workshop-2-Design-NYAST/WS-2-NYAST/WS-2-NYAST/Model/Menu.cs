@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WS_2_NYAST.Model
 {
-    class Menu
+    public class Menu
     {
         public enum MainMenu { StateLess, MenuMain, MenuMember, MenuBoat, MenuSave, MenuQuit }
 

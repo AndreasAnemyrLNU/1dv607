@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace WS_2_NYAST.Controller
 {
 
-    class member
+    public class member
     {
         // Region Start :: Dependenies
         private View.ConsoleIn cin;
@@ -15,6 +15,7 @@ namespace WS_2_NYAST.Controller
         private View.MenuMember menuMember;
         private Model.Member ModelMember;
         private Model.MemberCatalog MemberCatalog { get; set; }
+        private Model.BoatCatalog BoatCatalog { get; set; }
         // Regions End  :: Dependencies
 
         /// <summary>
@@ -22,12 +23,13 @@ namespace WS_2_NYAST.Controller
         /// </summary>
         private bool runWhile { get; set; }
 
-        public member(View.ConsoleIn cin, View.ConsoleOut cout, View.MenuMember menuMember, Model.MemberCatalog memberCatalog)
+        public member(View.ConsoleIn cin, View.ConsoleOut cout, View.MenuMember menuMember, Model.MemberCatalog memberCatalog, Model.BoatCatalog boatCatalog)
         {
             this.cin = cin;
             this.cout = cout;
             this.menuMember = menuMember;
             this.MemberCatalog = memberCatalog;
+            this.BoatCatalog = boatCatalog;
         }
 
         public Model.Member Create(Model.MemberCatalog memberCatalog)
@@ -51,11 +53,7 @@ namespace WS_2_NYAST.Controller
                     // We now ha a local ModelMember but...
                     // Add Member to MemberCatalog
                     MemberCatalog.AddMember(ModelMember);
-                    // Now it's reachable also easily from index...
-
-                    if(cin.boolResponseOfQuestion(View.ConsoleIn.FAQGTakeMeToMenuMember, "yY"))
-                        menuConfig(View.MenuMember.Menu.StateLess, false, true);
-                    
+                    // Now it's reachable also easily from index...                                            
                     // Exit While. Because we've succeded in creating a new member.
                     runWhile = false;
 
@@ -65,15 +63,28 @@ namespace WS_2_NYAST.Controller
                 {
                     new View.Error(e);
                     // Ask for continuing if an exception has been throwned in your face ;)
-                    runWhile = cin.boolResponseOfQuestion(View.ConsoleIn.FAQContinueWithY, "yY");
+                    if (cin.boolResponseOfQuestion(View.ConsoleIn.FAQContinueWithY, "yY"))
+                    {
+                        runWhile = true;
+                    }
+                    else
+                    {
+                        menuMember.ModelMenu.State = Model.Menu.MainMenu.MenuMember;
+                        menuMember.ModelMenu.IsActive = true;
+                        menuMember.State = View.MenuMember.Menu.StateLess;
+                        runWhile = false;
+                    }
                 }
             }
             // Client canceled. Change State for menu.
-            if(cin.boolResponseOfQuestion(View.ConsoleIn.FAQGTakeMeToMenuMember, "yY"))
-                menuConfig(View.MenuMember.Menu.StateLess, false, true);
-                        
-            //menuConfig(View.MenuMember.Menu.StateLess, false, true);
-            //DeleteCurrentMember();
+            if (cin.boolResponseOfQuestion(View.ConsoleIn.FAQGTakeMeToMenuMember, "yY")) 
+            {
+                // Exit While. Because we've succeded in creating a new member.
+                menuMember.ModelMenu.State = Model.Menu.MainMenu.MenuMember;
+                menuMember.ModelMenu.IsActive = true;
+                menuMember.State = View.MenuMember.Menu.StateLess;
+                runWhile = false;
+            }            
             return null;
         }
 
@@ -132,9 +143,9 @@ namespace WS_2_NYAST.Controller
                         {
                             try
                             {
-                                if (cin.boolResponseOfQuestion(string.Format(View.ConsoleIn.FAQMemberPreviousValue, ModelMember.FirstName), "yY"))
+                                if (cin.boolResponseOfQuestion(string.Format(View.ConsoleIn.FAQPreviousValue, ModelMember.FirstName), "yY"))
                                     ModelMember.FirstName = cin.ResponseToAskedQustion(View.MenuMember.FAQwhatsFirstName);
-                                if (cin.boolResponseOfQuestion(string.Format(View.ConsoleIn.FAQMemberPreviousValue, ModelMember.LastName), "yY"))
+                                if (cin.boolResponseOfQuestion(string.Format(View.ConsoleIn.FAQPreviousValue, ModelMember.LastName), "yY"))
                                     ModelMember.LastName = cin.ResponseToAskedQustion(View.MenuMember.FAQwhatsLastName);
                                 
                                 //SSN SECURED! No Dialogue!    
@@ -151,11 +162,14 @@ namespace WS_2_NYAST.Controller
                                 cout.Print(ModelMember.FirstName);
                                 cout.Print(ModelMember.LastName);
 
-                                if (cin.boolResponseOfQuestion(View.ConsoleIn.FAQGTakeMeToMenuMember, "yY"))
-                                    menuConfig(View.MenuMember.Menu.StateLess, false, true);
-
-                                // Exit While. Because we've succeded in creating a new member.
-                                runWhile = false;
+                                if (cin.boolResponseOfQuestion(View.ConsoleIn.FAQGTakeMeToMenuMember, "yY")) 
+                                {
+                                    // Exit While. Because we've succeded in creating a new member.
+                                    menuMember.ModelMenu.State = Model.Menu.MainMenu.MenuMember;
+                                    menuMember.ModelMenu.IsActive = true;
+                                    menuMember.State = View.MenuMember.Menu.StateLess;
+                                    runWhile = false;
+                                }
 
                                 return ModelMember;
                             }
@@ -163,22 +177,51 @@ namespace WS_2_NYAST.Controller
                             {
                                 new View.Error(e);
                                 // Ask for continuing if an exception has been throwned in your face ;)
-                                runWhile = cin.boolResponseOfQuestion(View.ConsoleIn.FAQContinueWithY, "yY");
+                                if (cin.boolResponseOfQuestion(View.ConsoleIn.FAQContinueWithY, "yY"))
+                                {
+                                    menuMember.ModelMenu.State = Model.Menu.MainMenu.MenuMember;
+                                    menuMember.ModelMenu.IsActive = true;
+                                    menuMember.State = View.MenuMember.Menu.Update;
+                                    runWhile = false;
+                                }
+                                else 
+                                {
+                                    menuMember.ModelMenu.State = Model.Menu.MainMenu.MenuMember;
+                                    menuMember.ModelMenu.IsActive = true;
+                                    menuMember.State = View.MenuMember.Menu.StateLess;
+                                    runWhile = false;
+                                }
                             }
                         }
                     }
                     // Client canceled. Change State for menu.
                     if (cin.boolResponseOfQuestion(View.ConsoleIn.FAQGTakeMeToMenuMember, "yY"))
-                        menuConfig(View.MenuMember.Menu.StateLess, false, true);
-
+                    {
+                        menuMember.ModelMenu.State = Model.Menu.MainMenu.MenuMember;
+                        menuMember.ModelMenu.IsActive = true;
+                        menuMember.State = View.MenuMember.Menu.StateLess;
+                        runWhile = false;
+                    }
                     return null;
-                
                 }
                 catch (Exception e)
                 {
                     new View.Error(e);
                     // Ask for continuing if an exception has been throwned in your face ;)
-                    runWhile = cin.boolResponseOfQuestion(View.ConsoleIn.FAQContinueWithY, "yY");
+                    if (cin.boolResponseOfQuestion(View.ConsoleIn.FAQContinueWithY, "yY"))
+                    {
+                        menuMember.ModelMenu.State = Model.Menu.MainMenu.MenuMember;
+                        menuMember.ModelMenu.IsActive = true;
+                        menuMember.State = View.MenuMember.Menu.Update;
+                        runWhile = true;
+                    }
+                    else
+                    {
+                        menuMember.ModelMenu.State = Model.Menu.MainMenu.MenuMember;
+                        menuMember.ModelMenu.IsActive = true;
+                        menuMember.State = View.MenuMember.Menu.StateLess;
+                        runWhile = false;
+                    }
                 }
             }
             return ModelMember;
@@ -207,13 +250,13 @@ namespace WS_2_NYAST.Controller
                     ModelMember = MemberCatalog.Read(SSN);
                     // ...Here's what we found :)
 
-                    if (coutPrint) 
+                    if (coutPrint)
                     {
                         cout.Print(ModelMember.PersonalNumber);
                         cout.Print(ModelMember.FirstName);
                         cout.Print(ModelMember.LastName);
                     }
-                    
+
                     // Exit While. Because we've succeded in reading a member.
                     if (cin.boolResponseOfQuestion(View.ConsoleIn.FAQGTakeMeToMenuMember, "yY"))
                         menuConfig(View.MenuMember.Menu.StateLess, false, true);
@@ -226,12 +269,20 @@ namespace WS_2_NYAST.Controller
                 {
                     new View.Error(View.Error.ErroMessageNonExistingMember);
                     // Ask for continuing if an exception has been throwned in your face ;)
-                    runWhile = cin.boolResponseOfQuestion(View.ConsoleIn.FAQContinueWithY, "yY");
+                    if (cin.boolResponseOfQuestion(View.ConsoleIn.FAQContinueWithY, "yY"))
+                    {
+                        runWhile = true;
+                    }
+                    else
+                    {
+                        menuMember.ModelMenu.State = Model.Menu.MainMenu.MenuMember;
+                        menuMember.ModelMenu.IsActive = true;
+                        menuMember.State = View.MenuMember.Menu.StateLess;
+                        runWhile = false;
+                    }
                 }
             }
-
             return ModelMember;
-
         }
 
 
@@ -258,41 +309,81 @@ namespace WS_2_NYAST.Controller
                         cout.Print(ModelMember.LastName);   
                 
                     // Exit While. Because we've succeded in reading a member.
-                    if (cin.boolResponseOfQuestion(View.ConsoleIn.FAQMemberReallyDelete, "yY"))
-                        MemberCatalog.Delete(ModelMember);
-                
-                    // Print deleted Member as confirm for user
-
-                    cout.Print(View.ConsoleIn.FAQMemberWasDeleted);
-                        cout.Print(ModelMember.PersonalNumber);
-                    
-                    // Exit While. We're done here!
-                    runWhile = false;
-                    
+                        if (cin.boolResponseOfQuestion(View.ConsoleIn.FAQMemberReallyDelete, "yY")) 
+                        {
+                            MemberCatalog.Delete(ModelMember);
+                            cout.Print(View.ConsoleIn.FAQMemberWasDeleted);
+                            cout.Print(ModelMember.PersonalNumber);
+                            // Exit While. We're done here!
+                            menuMember.ModelMenu.State = Model.Menu.MainMenu.MenuMember;
+                            menuMember.ModelMenu.IsActive = true;
+                            menuMember.State = View.MenuMember.Menu.StateLess;
+                            runWhile = false;
+                        }
                 }
                 catch
                 {
                     new View.Error(View.Error.ErroMessageNonExistingMember);
                     // Ask for continuing if an exception has been throwned in your face ;)
-                    runWhile = cin.boolResponseOfQuestion(View.ConsoleIn.FAQContinueWithY, "yY");
+                    if (cin.boolResponseOfQuestion(View.ConsoleIn.FAQContinueWithY, "yY")) 
+                    {
+                        menuMember.ModelMenu.State = Model.Menu.MainMenu.MenuMember;
+                        menuMember.ModelMenu.IsActive = true;
+                        menuMember.State = View.MenuMember.Menu.Delete;
+                        runWhile = false;
+                    }
+                    else 
+                    {
+                        menuMember.ModelMenu.State = Model.Menu.MainMenu.MenuMember;
+                        menuMember.ModelMenu.IsActive = true;
+                        menuMember.State = View.MenuMember.Menu.StateLess;
+                        runWhile = false;
+                    }
                 }
             }
         }
 
-        internal void Save()
+        public void Verbose() 
         {
- 	        throw new NotImplementedException();
+
+            new View.Listings().Verboses(MemberCatalog.Verbose(BoatCatalog), cout, cin);
+
+            menuMember.ModelMenu.State = Model.Menu.MainMenu.MenuMember;
+            menuMember.ModelMenu.IsActive = true;
+            menuMember.State = View.MenuMember.Menu.StateLess;
         }
+
+        public void Compact() 
+        {
+            new View.Listings().Compacts(MemberCatalog.Compact(BoatCatalog), cout, cin);
+
+            menuMember.ModelMenu.State = Model.Menu.MainMenu.MenuMember;
+            menuMember.ModelMenu.IsActive = true;
+            menuMember.State = View.MenuMember.Menu.StateLess;
+
+        }
+
+        public void Save()
+        {
+            if (new WS_2_NYAST.MODEL.ToFileDAL().save(BoatCatalog, MemberCatalog))
+            {
+                cout.Print("\n\nKatalogerna sparades till fill...\n\n");
+                System.Threading.Thread.Sleep(3000);
+
+                menuMember.ModelMenu.State = Model.Menu.MainMenu.MenuMember;
+                menuMember.ModelMenu.IsActive = false;
+                menuMember.State = View.MenuMember.Menu.StateLess;
+            }
+        }
+
         internal void Quit()
         {
+            menuMember.ModelMenu.State = Model.Menu.MainMenu.MenuMain;
             menuMember.ModelMenu.IsActive = false;
-            menuMember.ModelMenu.HasState = false;
+            menuMember.State = View.MenuMember.Menu.StateLess;
         }
 
 
 
-
-
-        
     }
 }

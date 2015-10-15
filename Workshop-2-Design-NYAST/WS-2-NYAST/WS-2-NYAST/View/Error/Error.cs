@@ -29,5 +29,8 @@ namespace WS_2_NYAST.View
         }
 
         public const string ErroMessageNonExistingMember = "Non existing user for your input!";
+        public const string ErroMessageAlreadyExistingMember = "Already existing user!";
+
+
     }
 }
