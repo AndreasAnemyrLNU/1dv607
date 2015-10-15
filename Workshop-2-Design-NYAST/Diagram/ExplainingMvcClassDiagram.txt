@@ -1,0 +1,12 @@
+Position 
+in diagram
+
+
+
+VIEW ------------------------Controller---------------------------Model
+left--------------------------middle-------------------------------Right
+
+
+Think it's obvious but, byt.....
+
+//Andréas
