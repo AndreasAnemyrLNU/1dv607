@@ -24,22 +24,16 @@ namespace BlackJack.controller
                 case (int)view.commands.Play :
                     a_game.NewGame();
                     break;
- 
                 case (int)view.commands.Hit :
                     a_game.Hit();
-                    break;
-            
+                    break;          
                 case (int)view.commands.Stand :
                     a_game.Stand();
-                    break;
-            
+                    break;         
                 case (int)view.commands.Quit :
-                    return false;
-               
+                    return false;        
                 default:
-                    break;
-
-                    
+                    break;                
             }
             return true;
         }
