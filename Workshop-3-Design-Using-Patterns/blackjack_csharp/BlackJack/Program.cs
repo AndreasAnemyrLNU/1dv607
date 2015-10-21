@@ -17,3 +17,9 @@ namespace BlackJack
         }
     }
 }
+
+
+/*TODO Notes...
+ * clone project and analyzed diagrams.
+ * It's time to implement the operation Game::Stand using Game_Stand.sequencediagram.... 10:03 2015-10-19
+ */

@@ -67,5 +67,26 @@ namespace BlackJack.model
             }
             return false;
         }
+
+
+        // 151021 Seq.diagr. //AA
+
+        public bool Stand()
+        {
+            if (m_deck != null) 
+            {   
+                ShowHand();
+            
+                while (m_hitRule.DoHit(this)) 
+                {
+                    var c = m_deck.GetCard();               
+                    c.Show(true);
+
+                    DealCard(c);
+
+                }
+            }
+            return false;
+        }
     }
 }
