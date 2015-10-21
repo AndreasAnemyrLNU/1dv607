@@ -5,9 +5,11 @@ using System.Text;
 
 namespace BlackJack.view
 {
+
+    public enum commands { Play = 112, Hit = 104, Stand = 115, Quit = 113 }
+
     class SimpleView : IView
     {
-
         public void DisplayWelcomeMessage()
         {
             System.Console.Clear();
