@@ -7,6 +7,6 @@ namespace BlackJack.model.rules
 {
     interface IWinnerStrategy
     {
-        void calcWinner(Player dealer, Player player);
+        bool calcWinner(Player dealer, Player player, int maxScore);
     }
 }

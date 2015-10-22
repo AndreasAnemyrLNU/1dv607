@@ -23,6 +23,7 @@ namespace BlackJack.model
             m_hitRule = a_rulesFactory.GetHitRule();
             //m_hitRule = a_rulesFactory.Get17Rule();
 
+            // TODO GetWinnerStrategy is hardcoden at momens
             m_winnerRule = a_rulesFactory.GetWinnerStrategy();
         }
 
@@ -54,15 +55,8 @@ namespace BlackJack.model
 
         public bool IsDealerWinner(Player a_player)
         {
-            if (a_player.CalcScore() > g_maxScore)
-            {
-                return true;
-            }
-            else if (CalcScore() > g_maxScore)
-            {
-                return false;
-            }
-            return CalcScore() >= a_player.CalcScore();
+            // Uses strategy pattern. Easy to add new...
+            return this.m_winnerRule.calcWinner(this, a_player, g_maxScore);
         }
 
         public bool IsGameOver()

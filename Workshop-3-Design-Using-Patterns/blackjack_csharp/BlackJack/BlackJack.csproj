@@ -75,8 +75,8 @@
     <Compile Include="model\Player.cs" />
     <Compile Include="model\rules\AmericanNewGameStrategy.cs" />
     <Compile Include="model\rules\BasicHitStrategy.cs" />
-    <Compile Include="model\rules\EasierToWinForDealer.cs" />
-    <Compile Include="model\rules\HarderToWinForDealer.cs" />
+    <Compile Include="model\rules\DealerWinsEquals.cs" />
+    <Compile Include="model\rules\PlayerWinsEquals.cs" />
     <Compile Include="model\rules\IHitStrategy.cs" />
     <Compile Include="model\rules\InternationalNewGameStrategy.cs" />
     <Compile Include="model\rules\INewGameStrategy.cs" />

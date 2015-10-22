@@ -24,14 +24,12 @@ namespace BlackJack.model.rules
 
         public IWinnerStrategy GetWinnerStrategy() 
         {
-            if (true) 
-            {
-                return new EasierToWinForDealer();
-            }
-            else 
-            {
-                return new HarderToWinForDealer();
-            }
+
+                return new DealerWinsEquals();
+
+                // Or could be this if not hardcoded...
+                //return new PlayerWinsEquals();
+
         }
 
     }
