@@ -78,14 +78,10 @@ namespace BlackJack.model
             if (m_deck != null) 
             {   
                 ShowHand();
-            
+
                 while (m_hitRule.DoHit(this)) 
                 {
-                    var c = m_deck.GetCard();               
-                    c.Show(true);
-
-                    DealCard(c);
-
+                    this.GetNewCard(true, m_deck);
                 }
             }
             return false;

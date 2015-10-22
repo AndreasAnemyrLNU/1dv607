@@ -58,5 +58,13 @@ namespace BlackJack.model
 
             return score;
         }
+
+        // 151022 Refactoring of duplication
+        public void GetNewCard(bool showCard, Deck deck)
+        {
+            var c = deck.GetCard();
+            c.Show(showCard);
+            this.DealCard(c);
+        }
     }
 }
