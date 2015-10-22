@@ -58,8 +58,31 @@ namespace BlackJack.view
             else
             {
                 System.Console.WriteLine("You Won!");
-            }
-            
+            }    
+        }
+
+        public void DisplayYouGotANewCard(IEnumerable<model.Card> a_hand, int a_score)
+        {
+            DisplayWait();
+            Console.Clear();
+            DisplayWelcomeMessage();
+            DisplayDealerHand(a_hand, a_score);
+            DisplayPlayerHand(a_hand, a_score);
+        }
+
+        private static void DisplayWait()
+        {
+            Console.WriteLine("Wait!");
+            Console.Write(".");
+            System.Threading.Thread.Sleep(350);
+            Console.Write(".");
+            System.Threading.Thread.Sleep(350);
+            Console.Write(".");
+            Console.Write(".");
+            System.Threading.Thread.Sleep(350);
+            Console.Write(".");
+            System.Threading.Thread.Sleep(350);
+            Console.Write(".");
         }
     }
 }

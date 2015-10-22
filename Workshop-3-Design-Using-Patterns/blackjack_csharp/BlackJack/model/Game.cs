@@ -7,6 +7,9 @@ namespace BlackJack.model
 {
     class Game
     {
+
+        List<IBlackJackObserver> m_observers;
+
         private model.Dealer m_dealer;
         private model.Player m_player;
 
@@ -14,6 +17,15 @@ namespace BlackJack.model
         {
             m_dealer = new Dealer(new rules.RulesFactory());
             m_player = new Player();
+            m_observers = new List<IBlackJackObserver>();
+            
+            // Observer... 
+            //this.AddSubscriber(m_dealer);
+            //this.AddSubscriber(m_player);
+
+            // Player need ref to game for notifying - observer.....
+            m_dealer.setGame(this);
+            m_player.setGame(this);
         }
 
         public bool IsGameOver()
@@ -59,6 +71,20 @@ namespace BlackJack.model
         public int GetPlayerScore()
         {
             return m_player.CalcScore();
+        }
+
+        // Observer...
+        public void AddSubscriber(IBlackJackObserver a_sub)
+        {
+            m_observers.Add(a_sub);
+        }
+
+        public void notifySubscriber(IEnumerable<model.Card> a_hand, int a_score) 
+        {
+            foreach (var o in m_observers) 
+            {
+                o.GetCardSlower(a_hand, a_score);
+            }
         }
     }
 }

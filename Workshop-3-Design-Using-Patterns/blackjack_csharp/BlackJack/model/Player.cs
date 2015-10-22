@@ -7,6 +7,13 @@ namespace BlackJack.model
 {
     class Player
     {
+        private model.Game m_game;
+
+        public void setGame(model.Game a_game) 
+        {
+            m_game = a_game;
+        }
+
         private List<Card> m_hand = new List<Card>();
 
         public void DealCard(Card a_card)
@@ -62,6 +69,7 @@ namespace BlackJack.model
         // 151022 Refactoring of duplication
         public void GetNewCard(bool showCard, Deck deck)
         {
+            m_game.notifySubscriber(GetHand(), CalcScore());
             var c = deck.GetCard();
             c.Show(showCard);
             this.DealCard(c);

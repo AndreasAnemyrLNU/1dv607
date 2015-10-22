@@ -64,5 +64,11 @@ namespace BlackJack.view
             System.Console.WriteLine("Poäng: {0}", a_score);
             System.Console.WriteLine("");
         }
+
+        public void DisplayYouGotANewCard(IEnumerable<model.Card> a_hand, int a_score)
+        {
+            Console.WriteLine("Du fick ett nytt kort");    
+        }
+
     }
 }

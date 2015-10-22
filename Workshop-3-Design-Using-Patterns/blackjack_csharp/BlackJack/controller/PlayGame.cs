@@ -5,21 +5,32 @@ using System.Text;
 
 namespace BlackJack.controller
 {
-    class PlayGame
+    class PlayGame : model.IBlackJackObserver
     {
-        public bool Play(model.Game a_game, view.IView a_view)
+        private model.Game a_game;
+        private view.IView m_view;
+
+        public PlayGame(model.Game a_game, view.IView a_view)
         {
-            a_view.DisplayWelcomeMessage();
+            this.a_game = a_game;
+            this.m_view = a_view;
+
+            a_game.AddSubscriber(this);
+        }
+
+        public bool Play()
+        {
+            m_view.DisplayWelcomeMessage();
             
-            a_view.DisplayDealerHand(a_game.GetDealerHand(), a_game.GetDealerScore());
-            a_view.DisplayPlayerHand(a_game.GetPlayerHand(), a_game.GetPlayerScore());
+            m_view.DisplayDealerHand(a_game.GetDealerHand(), a_game.GetDealerScore());
+            m_view.DisplayPlayerHand(a_game.GetPlayerHand(), a_game.GetPlayerScore());
 
             if (a_game.IsGameOver())
             {
-                a_view.DisplayGameOver(a_game.IsDealerWinner());
+                m_view.DisplayGameOver(a_game.IsDealerWinner());
             }
 
-            switch (a_view.GetInput()) 
+            switch (m_view.GetInput()) 
             {
                 case (int)view.commands.Play :
                     a_game.NewGame();
@@ -36,6 +47,11 @@ namespace BlackJack.controller
                     break;                
             }
             return true;
+        }
+
+        public void GetCardSlower(IEnumerable<model.Card> a_hand, int a_score)
+        {
+            m_view.DisplayYouGotANewCard(a_hand, a_score);
         }
     }
 }
