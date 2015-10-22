@@ -13,13 +13,17 @@ namespace BlackJack.model
         private rules.INewGameStrategy m_newGameRule;
         private rules.IHitStrategy m_hitRule;
 
+        private rules.IWinnerStrategy m_winnerRule;
+
 
         // TODO testing herer
         public Dealer(rules.RulesFactory a_rulesFactory)
         {
             m_newGameRule = a_rulesFactory.GetNewGameRule();
-            //m_hitRule = a_rulesFactory.GetHitRule();
-            m_hitRule = a_rulesFactory.Get17Rule();
+            m_hitRule = a_rulesFactory.GetHitRule();
+            //m_hitRule = a_rulesFactory.Get17Rule();
+
+            m_winnerRule = a_rulesFactory.GetWinnerStrategy();
         }
 
         public bool NewGame(Player a_player)

@@ -29,10 +29,15 @@ namespace BlackJack.model.rules
             }
 
             // No special circumstances....
-            if (a_dealer.CalcScore() < g_hitLimit)
+            if (a_dealer.CalcScore() < g_hitLimit) 
+            {
                 return true;
-                    
-            return false;            
+            }
+            else
+            {
+                return false;
+            }
+                        
         }
     }
 }

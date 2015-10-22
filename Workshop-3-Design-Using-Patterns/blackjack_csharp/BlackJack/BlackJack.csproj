@@ -75,9 +75,12 @@
     <Compile Include="model\Player.cs" />
     <Compile Include="model\rules\AmericanNewGameStrategy.cs" />
     <Compile Include="model\rules\BasicHitStrategy.cs" />
+    <Compile Include="model\rules\EasierToWinForDealer.cs" />
+    <Compile Include="model\rules\HarderToWinForDealer.cs" />
     <Compile Include="model\rules\IHitStrategy.cs" />
     <Compile Include="model\rules\InternationalNewGameStrategy.cs" />
     <Compile Include="model\rules\INewGameStrategy.cs" />
+    <Compile Include="model\rules\IWinnerStrategy.cs" />
     <Compile Include="model\rules\RulesFactory.cs" />
     <Compile Include="model\rules\Soft17Strategy.cs" />
     <Compile Include="Program.cs" />
