@@ -17,7 +17,7 @@ namespace BlackJack.model.rules
             return new AmericanNewGameStrategy();
         }
 
-        public IHitStrategy Get17Rule() 
+        public IHitStrategy Get17Rule()  
         {
             return new Soft17Strategy();
         }
