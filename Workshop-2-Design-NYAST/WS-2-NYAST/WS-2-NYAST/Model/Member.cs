@@ -9,20 +9,25 @@ namespace WS_2_NYAST.Model
  
     public class Member
     {
-        public string firstName;
-        public string lastName;
-        public string SSN;
+        private int uid;
+        private string firstName;
+        private string lastName;
+        private string SSN;
+        private Model.BoatCatalog boatCatalog;
+        
         public Member() 
         {
             // Empty
         }
 
+        /*
         public Member(string firstName, string lastName, string personalNumber) 
         {
             FirstName = firstName;
             LastName = lastName;
             PersonalNumber = personalNumber;
         }
+        */
         public string FirstName 
         {
             get { return firstName; }
@@ -50,6 +55,19 @@ namespace WS_2_NYAST.Model
                 SSN = value;
             }  
         }
+
+        public int Uid 
+        {
+            get { return uid; }
+            set { uid = value; }
+        }
+
+        public Model.BoatCatalog BoatCatalog 
+        {
+            get { return boatCatalog; }
+            set { boatCatalog = value; }
+        }
+
         public bool validateText(string value, int minChars, int maxChars)
         {
             if (string.IsNullOrEmpty(value)) 

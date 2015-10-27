@@ -40,33 +40,21 @@ namespace WS_2_NYAST.Model
             return boats;
         }
 
-        public Model.BoatCatalog Read(string groupId)
-        {
-            Model.BoatCatalog boatCatalogByGroupId = new Model.BoatCatalog();
-
-            foreach(Model.Boat boat in boats)
-            {
-                if (boat.GroupId == groupId)
-                {
-                    boatCatalogByGroupId.Add(boat);
-                }
-            }
-            return boatCatalogByGroupId;
-        }
-
         public Model.Boat Read(int indexInBoats) 
         {
             return boats[indexInBoats];
         }
 
-        public void Update()
+        public void delete(Model.Boat toBeDeleted)
         {
-            throw new NotImplementedException();
-        }
-
-        public void Delete()
-        {
-            throw new NotImplementedException();
+            foreach (Model.Boat boat in boats)
+            {
+                boat.Equals(toBeDeleted);
+                boats.Remove(toBeDeleted);
+                if (boats.Count == 0)
+                    break;
+            }
+            return;
         }
 
         public Model.Boat Add(Boat boat)

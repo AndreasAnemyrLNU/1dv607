@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WS-2-NYAST", "WS-2-NYAST\WS-2-NYAST.csproj", "{10429854-E7DD-4542-9D57-9B773D456761}"
 EndProject
+Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "WS-2-Modelling", "WS-2-Modelling\WS-2-Modelling.modelproj", "{F9319AA9-7524-4D00-BD2E-40977337FB6C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{10429854-E7DD-4542-9D57-9B773D456761}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10429854-E7DD-4542-9D57-9B773D456761}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10429854-E7DD-4542-9D57-9B773D456761}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9319AA9-7524-4D00-BD2E-40977337FB6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9319AA9-7524-4D00-BD2E-40977337FB6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9319AA9-7524-4D00-BD2E-40977337FB6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9319AA9-7524-4D00-BD2E-40977337FB6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

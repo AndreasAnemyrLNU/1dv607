@@ -11,33 +11,29 @@ namespace WS_2_NYAST.MODEL
 {
 
 
-    class ToFileDAL
+    public class ToFileDAL
     {
 
-                    
-        string fileBoatCatalog = string.Format("{0}/BoatCatalog.txt", AppDomain.CurrentDomain.BaseDirectory);
         string fileMembersCatalog = string.Format("{0}/MemberCatlog.txt", AppDomain.CurrentDomain.BaseDirectory);
             
-        public bool load(Model.BoatCatalog boatCatalog, Model.MemberCatalog memberCatalog)
+        public bool load(Model.MemberCatalog memberCatalog)
         {
             try 
             {
-                boatCatalog     =   ReadFromXmlFile<Model.BoatCatalog>(fileBoatCatalog);
                 memberCatalog   =   ReadFromXmlFile<Model.MemberCatalog>(fileMembersCatalog);
                 return true;
             }
             catch (Exception e)
             {
-                new View.Error(e);
+                var log = e.Message;
             }
             return false;
         }
 
-        public bool save(Model.BoatCatalog boatCatalog, Model.MemberCatalog memberCatalog)
+        public bool save(Model.MemberCatalog memberCatalog)
         {
             try 
             {
-                WriteToXmlFile<Model.BoatCatalog>(fileBoatCatalog, boatCatalog, false);
                 WriteToXmlFile<Model.MemberCatalog>(fileMembersCatalog, memberCatalog, false);
                 return true;
             }

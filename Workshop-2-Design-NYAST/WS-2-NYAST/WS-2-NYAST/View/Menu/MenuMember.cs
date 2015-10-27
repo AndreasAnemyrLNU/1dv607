@@ -8,7 +8,7 @@ namespace WS_2_NYAST.View
 {
     public class MenuMember : BaseMenu
     {
-        new public enum Menu { StateLess, Create, Read, Update, Delete, Compact, Verbose, Save, Quit }
+        public enum Menu { StateLess, Create, Read, Update, Delete, Compact, Verbose, Save, Quit }
 
         public Menu State { get; set; }
 
@@ -26,37 +26,6 @@ namespace WS_2_NYAST.View
         {
             ShowIt(menu, imenus, Title, Enum.GetValues(typeof(Menu)));
         }
-
-        // TODO Refactor this...
-        /*public void ClientUpdatesStateForMenu(int input)
-        {
-            switch ((Menu)(input))
-	        {
-		        case Menu.StateLess:
-                    State = Menu.StateLess;
-                    break;
-                case Menu.Create:
-                    State = Menu.Create;
-                    break;
-                case Menu.Read:
-                 State = Menu.Read;
-                    break;
-                case Menu.Update:
-                    State = Menu.Update;
-                    break;
-                case Menu.Delete:
-                    State = Menu.Delete;
-                    break;
-                case Menu.Save:
-                    State = Menu.Save;
-                    break;
-                case Menu.Quit:
-                    State = Menu.Quit;
-                    break;
-                default:
-                    throw new ApplicationException("Something weird in menu happened!");
-	        }
-        }*/
 
         public const string FAQwhatsFirstName = "What´s the firstname of member?";
         public const string FAQwhatsLastName = "What´s the lastname of member?";

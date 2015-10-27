@@ -8,7 +8,7 @@ namespace WS_2_NYAST.View
 {
     public class MenuBoat : BaseMenu
     {
-        new public enum Menu { StateLess, Create, Read, Update, Delete, Save, Quit}
+        public enum Menu { StateLess, Create, Read, Update, Delete, Save, Quit}
 
         public Menu State { get; set; }
 

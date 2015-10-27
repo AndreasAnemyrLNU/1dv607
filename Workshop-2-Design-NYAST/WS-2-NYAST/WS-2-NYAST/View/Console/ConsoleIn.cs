@@ -10,9 +10,8 @@ namespace WS_2_NYAST.View
     public class ConsoleIn
     {
         public int readKeyToInt()
-        {
+        {            
             return (int)Console.ReadKey(true).KeyChar - 48;
-
         }
 
         public string readString()
@@ -75,9 +74,15 @@ namespace WS_2_NYAST.View
         public const string FAQwhatsSSN = "What´s the SSN of member?";
         public const string FAQMemberReallyDelete = "(y) Really, delete meber? : ";
         public const string FAQMemberReallyUpdate = "(y) Really, edit/update member? : ";
+        public const string FAQMemberWasCreated = "This Member was created!";
         public const string FAQMemberWasDeleted = "This Member was deleted!";
         public const string FAQMemberWasUpdated = "This Member was updated!";
         public const string FAQMemberWasFoundBySSN = "This Member was found by SSN!";
+        public const string FAQMemberWasNotFoundBySSN = "Member was NOT found by SSN!";
+        public const string FAQMemberContinueCreating = "(y) Continue creating member?";
+        public const string FAQMemberContinueUpdating = "(y) Continue updating another member?";
+        public const string FAQMemberContinueReading = "(y) Continue reading another member?";
+        public const string FAQMemberContinueDeleting = "(y) Continue deliting another member?";
         // End Regions :: Member
 
         // Start Region :: Boat
@@ -90,7 +95,9 @@ namespace WS_2_NYAST.View
         public const string FAQBoatBoatsfounByGroup = "These boats belongs to : {0}";
         public const string FAQBoatBoatsNrToEdit = "Want to edit?  Press {0}";
         public const string FAQBoatWhichtoEdit = "Enter the boat you wan't to edit.\n(Enter digit from list of boats above.";
+        public const string FAQBoatWhichtoDelete = "Enter the boat you wan't to delete.\n(Enter digit from list of boats above.";
         public const string FAQBoatWasUpdated = "This Boat was updated!";
+        public const string FAQBoatAddMoreBoats = "(y) Add yet another boat?";
         // End Region   :: Boat
 
         // Start Region :: Quit

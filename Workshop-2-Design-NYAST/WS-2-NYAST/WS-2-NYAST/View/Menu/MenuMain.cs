@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace WS_2_NYAST.View
 {
-    class MenuMain : BaseMenu
+    public class MenuMain : BaseMenu
     {
-        new public enum Menu { StateLess, Main, Member, Boat, Save, Quit }
 
-        private Menu State { get; set; }
+        public enum Menu { StateLess, Main, Member, Quit }
+
+        public Menu State { get; set; }
 
         public MenuMain(View.ConsoleIn cin, View.ConsoleOut cout, Model.Menu menu)
             : base(cin, cout, menu)

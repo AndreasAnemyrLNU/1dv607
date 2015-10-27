@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace WS_2_NYAST.View
 {
-    class MenuQuit : BaseMenu
+    public class MenuQuit : BaseMenu
     {
-        new public enum Menu { StateLess, Quit }
+        public enum Menu { StateLess, Quit }
 
         private Menu State { get; set; }
 

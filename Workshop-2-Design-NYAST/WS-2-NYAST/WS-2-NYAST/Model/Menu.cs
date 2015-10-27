@@ -8,9 +8,13 @@ namespace WS_2_NYAST.Model
 {
     public class Menu
     {
-        public enum MainMenu { StateLess, MenuMain, MenuMember, MenuBoat, MenuSave, MenuQuit }
+
+
+        public enum MainMenu { StateLess, MenuMain, MenuMember, MenuQuit, MenuBoat}
 
         private static MainMenu state { get; set; }
+
+        public bool IsActive { get; set; }
 
         public MainMenu State 
         {
@@ -23,9 +27,5 @@ namespace WS_2_NYAST.Model
         {
             IsActive = isActive;
         }
-
-        //public static int storedInput { get; set; }
-
-        public bool HasState { get; set; }
     }
 }

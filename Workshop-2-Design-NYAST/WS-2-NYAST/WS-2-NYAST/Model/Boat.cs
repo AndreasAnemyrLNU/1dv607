@@ -16,7 +16,7 @@ namespace WS_2_NYAST.Model
         
         public int Length { get; set; }
 
-        public string GroupId { get; set; }
+        //public string GroupId { get; set; }
 
         public Boat() 
         {
@@ -27,7 +27,7 @@ namespace WS_2_NYAST.Model
         {
             Length = length;
             Type = type;
-            GroupId = groupId;
+            //GroupId = groupId;
         }
     }
 }

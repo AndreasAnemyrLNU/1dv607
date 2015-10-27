@@ -8,13 +8,6 @@ namespace WS_2_NYAST.View
 {
     public interface IMenu
     {
-        //void ShowIt(View.IMenu imenu, List<View.IMenu> imenus, string title, Array selectables);
-
-        //void ChangeActiveMenu(List<View.IMenu> imenus, int readKey);
-
-        //void Render(string title, Array selectables);
-
-        //void ShowIt(View.IMenu imenu, List<View.IMenu> imenus);
-
+        //Empty
     }
 }

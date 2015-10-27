@@ -11,13 +11,11 @@ namespace WS_2_NYAST.View
         // Menu status
         public Model.Menu ModelMenu { get; set; }
 
-        public enum Menu { };
-
         protected View.ConsoleIn Cin { get; set; }
 
         protected View.ConsoleOut Cout { get; set; }
 
-        protected BaseMenu(View.ConsoleIn cin, View.ConsoleOut cout, Model.Menu menu) 
+        public BaseMenu(View.ConsoleIn cin, View.ConsoleOut cout, Model.Menu menu) 
         {
             Cin = cin;
             Cout = cout;

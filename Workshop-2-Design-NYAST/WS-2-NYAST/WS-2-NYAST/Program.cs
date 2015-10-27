@@ -10,7 +10,7 @@ namespace WS_2_NYAST
     {
         static void Main(string[] args)
         {
-            Controller.index index = new Controller.index();   
+            Controller.Index index = new Controller.Index();   
             index.Do();
         }
     }

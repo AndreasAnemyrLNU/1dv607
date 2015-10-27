@@ -6,14 +6,20 @@ using System.Threading.Tasks;
 
 namespace WS_2_NYAST.Controller
 {
-    class quit
+    class Quit : Index
     {
-        public void JustDoIt(View.ConsoleIn cin, View.ConsoleOut cout, int millis, Model.Menu menuMain)
+        public Quit (Controller.Index index)
+        : base(index) { /*empty*/ }
+
+
+                //public void JustDoIt(View.ConsoleIn cin, View.ConsoleOut cout, int millis, Model.Menu menuMain)
+
+
+        public void JustDoIt(int millis, Controller.Index index)
         {
-                cout.Print(string.Format(View.ConsoleIn.FAQQuitMessage, millis));
+                Cout.Print(string.Format(View.ConsoleIn.FAQQuitMessage, millis));
                 System.Threading.Thread.Sleep(millis);
-                menuMain.State = Model.Menu.MainMenu.StateLess;
-       
+                MenuMain.State = Model.Menu.MainMenu.StateLess;    
         }
     }
 }

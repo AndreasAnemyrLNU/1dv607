@@ -11,7 +11,7 @@ namespace WS_2_NYAST.Model
     public class MemberCatalog
     {
         // Counting boats per user to listr
-        public int boatsCounter;
+        //public int boatsCounter;
 
         public List<Member> members;
 
@@ -81,6 +81,17 @@ namespace WS_2_NYAST.Model
 
         public Member AddMember(Member member)
         {
+
+            if (members.Count > 0) 
+            {
+                member.Uid = members[members.Count - 1].Uid + 1; 
+            }
+            else
+            {
+                member.Uid = 1;
+            }
+            
+            
             foreach (Model.Member _member in members) 
             {
                 if (_member.PersonalNumber == member.PersonalNumber)
@@ -121,6 +132,7 @@ namespace WS_2_NYAST.Model
         public int _position = -1;
         public int position;
 
+        /*
         public List<Compact> Compact(Model.BoatCatalog boatCatalog) 
         {
             List<Compact> compacts = new List<Compact>(members.Count);
@@ -129,42 +141,25 @@ namespace WS_2_NYAST.Model
             {
                 foreach(Model.Boat boat in boatCatalog)
                 {
-                    if(boat.GroupId == member.PersonalNumber)
-                        boatsCounter++;
+                        // ??
                 }
-                compacts.Add(new Compact(member.SSN, member.FirstName, member.lastName, boatsCounter));
+                compacts.Add(new Compact(member.PersonalNumber, member.FirstName, member.LastName, boatsCounter));
                 boatsCounter = 0;
             }
 
             return compacts;
         }
+        */
 
+        /*
         public List<Verbose> Verbose(Model.BoatCatalog boatCatalog)
         {
             List<Verbose> verboses = new List<Verbose>(members.Count);
 
-            foreach (Model.Member member in members)
-            {
-                foreach (Model.Boat boat in boatCatalog)
-                {
-                    if (boat.GroupId == member.SSN) 
-                    {
-                        verboses.Add
-                        (
-                            new Verbose
-                            (
-                                member.SSN,
-                                member.FirstName,
-                                member.lastName,
-                                boat.Length
-                                //boat.Type
-                            )   
-                        );
-                    }
-                }
-            }
+
 
             return verboses;
         }
+        */
     }
 }
